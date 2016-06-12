@@ -1,0 +1,17 @@
+{
+    "jump": [
+             {
+             "path": "OrderPage"
+             },
+             {
+             "path": "OA"
+             },
+             {
+             "path": "OB",
+             "parameters": {
+             "pID": "10033781",
+             "pName": "AYB_RCBJ"
+             }
+             }
+             ]
+}
