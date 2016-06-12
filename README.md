@@ -1,0 +1,2 @@
+# ControllerRouterManager
+以tabbarcontroller＋navigationcontroller为层次结构建立的app中，实现各个页面之间能像网页一样随意跳转的功能
