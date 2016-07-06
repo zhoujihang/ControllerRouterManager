@@ -28,7 +28,9 @@
 // 给定参数的初始化方法
 - (instancetype)initWithRoutableParameters:(NSDictionary *)dic;
 // 路由页面自己给出是否需要登录，不实现则认为不需要登录
-- (BOOL)isNeedLogin;
++ (BOOL)isNeedLogin;
+// 校验路由参数是否合法
++ (BOOL)validateRoutableParameters:(NSDictionary *)dic;
 @end
 
 @interface RouterManager : NSObject

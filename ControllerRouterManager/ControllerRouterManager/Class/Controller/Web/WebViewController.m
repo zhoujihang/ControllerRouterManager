@@ -16,10 +16,20 @@
 
 @implementation WebViewController
 
++ (BOOL)validateRoutableParameters:(NSDictionary *)dic{
+    NSString *url = dic[@"url"];
+    
+    if ([url isKindOfClass:[NSString class]] && url.length>0) {
+        return YES;
+    }
+    return NO;
+}
+// 必须传递2个必要参数 才能通过协议跳转到此页面
 - (instancetype)initWithRoutableParameters:(NSDictionary *)dic{
+    if (![[self class] validateRoutableParameters:dic]) {return nil;}
+    
     NSString *urlString = dic[@"url"];
     NSString *title = dic[@"title"];
-    if (urlString.length == 0) {return nil;}
     
     WebViewController *vc = [[WebViewController alloc] init];
     vc.urlString = urlString;

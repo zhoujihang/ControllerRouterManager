@@ -25,7 +25,7 @@
 @implementation RouterManager
 
 + (void)routerWithRouterInfoModel:(RouterInfoModel *)infoModel fromViewController:(UIViewController *)fromVC{
-
+    
     if (!infoModel) {return;}
     // 跳转到指定页面
     [self routerToJumpWithRouterInfoModel:infoModel fromController:fromVC];
@@ -33,8 +33,8 @@
 // 跳转到指定页面
 + (void)routerToJumpWithRouterInfoModel:(RouterInfoModel *)infoModel fromController:(UIViewController *)fromVC{
     // 有能跳转的路径才进行跳转
-    NSArray *routerVCArr = [self routerVCArrayFromRouterInfoModel:infoModel];
-    if (routerVCArr.count == 0) {return;}
+    BOOL isValidateRouter = [self isValidateRouterWithModel:infoModel];
+    if (!isValidateRouter) {return;}
     
     UINavigationController *fromNavController = fromVC.navigationController;
     
@@ -92,64 +92,71 @@
 }
 
 #pragma mark - 获取跳转路径的集合
-// 如果返回空数组，表示没有合法的跳转路径
+// 调用此方法钱应该先调用 isValidateRouterWithModel 判断路径是否合法
+// 如果没有合法路径，将返回 @[]
 + (NSArray *)routerVCArrayFromRouterInfoModel:(RouterInfoModel *)infoModel{
+    if (![self isValidateRouterWithModel:infoModel]) {return @[];};
+    
     NSMutableArray *routerVCMArr = [@[] mutableCopy];
     for (int i=0; i<infoModel.jumpNodeArray.count; i++) {
-        BOOL isValidateVC = YES;
-        
         RouterJumpNodeModel *nodeModel = infoModel.jumpNodeArray[i];
-        
-        // 1 跳转对象不为空
-        UIViewController *routerVC = [self routableViewControllerWithClass:nodeModel.pathClass parameters:nodeModel.parameters];
-        if (!routerVC) {
-            NSString *message = [NSString stringWithFormat:@"错误 跳转对象创建失败 class:%@ ,paratemers:%@",nodeModel.pathClass, nodeModel.parameters];
-            NSLog(@"router %@",message);
-            isValidateVC = NO;
-        }
-        
-        // 2 校验是否需要登录
-        if ([routerVC respondsToSelector:@selector(isNeedLogin)]) {
-            BOOL needLogin = (BOOL)[routerVC performSelector:@selector(isNeedLogin)];
-            BOOL isLogin = [StoredKeyManager sharedManager].isLogin;
-            // 跳转对象需要登录，但是当前用户未登录
-            if (needLogin && !isLogin) {
-                NSString *message = [NSString stringWithFormat:@"错误 跳转对象需要登录权限 class:%@",nodeModel.pathClass];
-                NSLog(@"router %@",message);
-                isValidateVC = NO;
-            }
-        }
-        
-        if (!isValidateVC) {
-            // 有一个路径不满足，则整个跳转失败
+        UIViewController *vc = [self routableViewControllerWithClass:nodeModel.pathClass parameters:nodeModel.parameters];
+        if (vc == nil) {
             [routerVCMArr removeAllObjects];
             break;
         }
-        
-        routerVC.hidesBottomBarWhenPushed = YES;
-        [routerVCMArr addObject:routerVC];
+        [routerVCMArr addObject:vc];
     }
-
+    
     return [routerVCMArr copy];
 }
 
 #pragma mark - 获取单个跳转的对象
 + (UIViewController *)routableViewControllerWithClass:(Class)vcClass parameters:(NSDictionary *)parameters{
-    
     UIViewController *vc = nil;
-    if (class_respondsToSelector(vcClass, @selector(initWithRoutableParameters:))) {
+    if ([vcClass instancesRespondToSelector:@selector(initWithRoutableParameters:)]) {
         vc = [[vcClass alloc] initWithRoutableParameters:parameters];
     }else{
         vc = [[vcClass alloc] init];
     }
-    
     return vc;
 }
 
 #pragma mark - 判断给定的跳转模型能否跳转
 + (BOOL)isValidateRouterWithModel:(RouterInfoModel *)infoModel{
-    NSArray *vcArray = [self routerVCArrayFromRouterInfoModel:infoModel];
-    return vcArray.count != 0;
+    for (RouterJumpNodeModel *nodeModel in infoModel.jumpNodeArray) {
+        if ([self isValidateRouterNodeWithModel:nodeModel] == NO) {
+            return NO;
+        }
+    }
+    return YES;
+}
+#pragma mark - 判断单个节点数据是否合法
++ (BOOL)isValidateRouterNodeWithModel:(RouterJumpNodeModel *)nodeModel{
+    
+    // 判断登录条件
+    BOOL isLogin = [StoredKeyManager sharedManager].isLogin;
+    BOOL isNeedLogin = NO;
+    if ([nodeModel.pathClass respondsToSelector:@selector(isNeedLogin)]) {
+        isNeedLogin = [nodeModel.pathClass isNeedLogin];
+    }
+    if (isNeedLogin==YES && isLogin==NO) {
+        NSString *message = [NSString stringWithFormat:@"路由跳转失败，原因：需要登录 path:%@ class:%@ parameters:%@",nodeModel.path,nodeModel.pathClass, nodeModel.parameters];
+        NSLog(@"%@",message);
+        return NO;
+    }
+    
+    // 判断路由参数
+    if ([nodeModel.pathClass respondsToSelector:@selector(validateRoutableParameters:)]) {
+        BOOL validate = [nodeModel.pathClass validateRoutableParameters:nodeModel.parameters];
+        if (validate==NO) {
+            NSString *message = [NSString stringWithFormat:@"路由跳转失败，原因：缺少参数 path:%@ class:%@ parameters:%@",nodeModel.path,nodeModel.pathClass, nodeModel.parameters];
+            NSLog(@"%@",message);
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end

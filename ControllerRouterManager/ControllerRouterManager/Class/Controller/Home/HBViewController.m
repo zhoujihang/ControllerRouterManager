@@ -20,14 +20,26 @@
 @implementation HBViewController
 
 // 必须当前处于登录状态才能通过协议跳转到此页面
-- (BOOL)isNeedLogin{
++ (BOOL)isNeedLogin{
     return YES;
+}
++ (BOOL)validateRoutableParameters:(NSDictionary *)dic{
+    NSString *pID = dic[@"pID"];
+    NSString *pName = dic[@"pName"];
+    
+    if ([pID isKindOfClass:[NSString class]] && pID.length>0) {
+        if ([pName isKindOfClass:[NSString class]] && pName.length>0) {
+            return YES;
+        }
+    }
+    return NO;
 }
 // 必须传递2个必要参数 才能通过协议跳转到此页面
 - (instancetype)initWithRoutableParameters:(NSDictionary *)dic{
+    if (![[self class] validateRoutableParameters:dic]) {return nil;}
+    
     NSString *pID = dic[@"pID"];
     NSString *pName = dic[@"pName"];
-    if (pID.length == 0 || pName.length == 0) {return nil;}
     
     HBViewController *vc = [[HBViewController alloc] init];
     vc.projectID = pID;
