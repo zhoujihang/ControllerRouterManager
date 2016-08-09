@@ -45,9 +45,13 @@ RouterInfoModel，json格式如下，描述了详细的跳转路径，与路径�
 需要校验的controller实现如下协议即可
 
 	@protocol RoutableDelegate <NSObject>
+	// 如果路由跳转时需要参数则实现该方法
 	@optional
-	// 交给节点判断参数是否合法，合法则返回对象，否者返回nil
+	// 给定参数的初始化方法
 	- (instancetype)initWithRoutableParameters:(NSDictionary *)dic;
-	// 节点告诉路由此路径是否需要登录权限
-	- (BOOL)isNeedLogin;
+	// 路由页面自己给出是否需要登录，不实现则认为不需要登录
+	+ (BOOL)isNeedLogin;
+	// 校验路由参数是否合法
+	+ (BOOL)validateRoutableParameters:(NSDictionary *)dic;
 	@end
+
