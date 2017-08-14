@@ -1,0 +1,782 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4722D72B1F41BEF2001038AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D72A1F41BEF2001038AA /* main.m */; };
+		4722D72E1F41BEF2001038AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D72D1F41BEF2001038AA /* AppDelegate.m */; };
+		4722D7361F41BEF2001038AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4722D7351F41BEF2001038AA /* Assets.xcassets */; };
+		4722D7391F41BEF2001038AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4722D7371F41BEF2001038AA /* LaunchScreen.storyboard */; };
+		4722D7441F41BEF2001038AA /* RouterManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7431F41BEF2001038AA /* RouterManagerTests.m */; };
+		4722D74F1F41BEF2001038AA /* RouterManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D74E1F41BEF2001038AA /* RouterManagerUITests.m */; };
+		4722D7681F41BFAD001038AA /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7671F41BFAD001038AA /* BaseViewController.m */; };
+		4722D76B1F41BFD0001038AA /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D76A1F41BFD0001038AA /* BaseNavigationController.m */; };
+		4722D76F1F41C00E001038AA /* FDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D76E1F41C00E001038AA /* FDTabBarController.m */; };
+		4722D7721F41C027001038AA /* FKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7711F41C027001038AA /* FKTabBarController.m */; };
+		4722D77A1F41C1FF001038AA /* HomeAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7791F41C1FF001038AA /* HomeAViewController.m */; };
+		4722D77D1F41C208001038AA /* HomeBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D77C1F41C208001038AA /* HomeBViewController.m */; };
+		4722D7801F41C210001038AA /* HomeCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D77F1F41C210001038AA /* HomeCViewController.m */; };
+		4722D7831F41C21C001038AA /* HouseAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7821F41C21C001038AA /* HouseAViewController.m */; };
+		4722D7861F41C224001038AA /* HouseBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7851F41C224001038AA /* HouseBViewController.m */; };
+		4722D7891F41C22B001038AA /* HouseCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7881F41C22B001038AA /* HouseCViewController.m */; };
+		4722D78C1F41C235001038AA /* MessageAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D78B1F41C235001038AA /* MessageAViewController.m */; };
+		4722D78F1F41C23D001038AA /* MessageBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D78E1F41C23D001038AA /* MessageBViewController.m */; };
+		4722D7921F41C245001038AA /* MessageCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7911F41C245001038AA /* MessageCViewController.m */; };
+		4722D7951F41C24F001038AA /* OrderAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7941F41C24F001038AA /* OrderAViewController.m */; };
+		4722D7981F41C259001038AA /* OrderBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7971F41C259001038AA /* OrderBViewController.m */; };
+		4722D79B1F41C262001038AA /* OrderCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D79A1F41C262001038AA /* OrderCViewController.m */; };
+		4722D79E1F41C270001038AA /* PersonalAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D79D1F41C270001038AA /* PersonalAViewController.m */; };
+		4722D7A11F41C279001038AA /* PersonalBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A01F41C279001038AA /* PersonalBViewController.m */; };
+		4722D7A41F41C281001038AA /* PersonalCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A31F41C281001038AA /* PersonalCViewController.m */; };
+		4722D7A71F41C7B0001038AA /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A61F41C7B0001038AA /* UIColor+Extension.m */; };
+		47B88B171F41CCD600D900E5 /* XZRouterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B161F41CCD600D900E5 /* XZRouterModel.m */; };
+		47B88B1A1F41CCE400D900E5 /* XZRouterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B191F41CCE400D900E5 /* XZRouterManager.m */; };
+		47B88B1D1F41CCF300D900E5 /* XZRouterRegisterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B1C1F41CCF300D900E5 /* XZRouterRegisterTool.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4722D7401F41BEF2001038AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4722D71E1F41BEF2001038AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4722D7251F41BEF2001038AA;
+			remoteInfo = RouterManager;
+		};
+		4722D74B1F41BEF2001038AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4722D71E1F41BEF2001038AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4722D7251F41BEF2001038AA;
+			remoteInfo = RouterManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4722D7261F41BEF2001038AA /* RouterManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouterManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4722D72A1F41BEF2001038AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4722D72C1F41BEF2001038AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4722D72D1F41BEF2001038AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4722D7351F41BEF2001038AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4722D7381F41BEF2001038AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4722D73A1F41BEF2001038AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4722D73F1F41BEF2001038AA /* RouterManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouterManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4722D7431F41BEF2001038AA /* RouterManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouterManagerTests.m; sourceTree = "<group>"; };
+		4722D7451F41BEF2001038AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4722D74A1F41BEF2001038AA /* RouterManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouterManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4722D74E1F41BEF2001038AA /* RouterManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouterManagerUITests.m; sourceTree = "<group>"; };
+		4722D7501F41BEF2001038AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4722D7661F41BFAD001038AA /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		4722D7671F41BFAD001038AA /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4722D7691F41BFD0001038AA /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		4722D76A1F41BFD0001038AA /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		4722D76D1F41C00E001038AA /* FDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTabBarController.h; sourceTree = "<group>"; };
+		4722D76E1F41C00E001038AA /* FDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTabBarController.m; sourceTree = "<group>"; };
+		4722D7701F41C027001038AA /* FKTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTabBarController.h; sourceTree = "<group>"; };
+		4722D7711F41C027001038AA /* FKTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKTabBarController.m; sourceTree = "<group>"; };
+		4722D7781F41C1FF001038AA /* HomeAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAViewController.h; sourceTree = "<group>"; };
+		4722D7791F41C1FF001038AA /* HomeAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAViewController.m; sourceTree = "<group>"; };
+		4722D77B1F41C208001038AA /* HomeBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBViewController.h; sourceTree = "<group>"; };
+		4722D77C1F41C208001038AA /* HomeBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBViewController.m; sourceTree = "<group>"; };
+		4722D77E1F41C210001038AA /* HomeCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCViewController.h; sourceTree = "<group>"; };
+		4722D77F1F41C210001038AA /* HomeCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCViewController.m; sourceTree = "<group>"; };
+		4722D7811F41C21C001038AA /* HouseAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAViewController.h; sourceTree = "<group>"; };
+		4722D7821F41C21C001038AA /* HouseAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAViewController.m; sourceTree = "<group>"; };
+		4722D7841F41C224001038AA /* HouseBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseBViewController.h; sourceTree = "<group>"; };
+		4722D7851F41C224001038AA /* HouseBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseBViewController.m; sourceTree = "<group>"; };
+		4722D7871F41C22B001038AA /* HouseCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseCViewController.h; sourceTree = "<group>"; };
+		4722D7881F41C22B001038AA /* HouseCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseCViewController.m; sourceTree = "<group>"; };
+		4722D78A1F41C235001038AA /* MessageAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageAViewController.h; sourceTree = "<group>"; };
+		4722D78B1F41C235001038AA /* MessageAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageAViewController.m; sourceTree = "<group>"; };
+		4722D78D1F41C23D001038AA /* MessageBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBViewController.h; sourceTree = "<group>"; };
+		4722D78E1F41C23D001038AA /* MessageBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBViewController.m; sourceTree = "<group>"; };
+		4722D7901F41C245001038AA /* MessageCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCViewController.h; sourceTree = "<group>"; };
+		4722D7911F41C245001038AA /* MessageCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCViewController.m; sourceTree = "<group>"; };
+		4722D7931F41C24F001038AA /* OrderAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAViewController.h; sourceTree = "<group>"; };
+		4722D7941F41C24F001038AA /* OrderAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAViewController.m; sourceTree = "<group>"; };
+		4722D7961F41C259001038AA /* OrderBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBViewController.h; sourceTree = "<group>"; };
+		4722D7971F41C259001038AA /* OrderBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBViewController.m; sourceTree = "<group>"; };
+		4722D7991F41C262001038AA /* OrderCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCViewController.h; sourceTree = "<group>"; };
+		4722D79A1F41C262001038AA /* OrderCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCViewController.m; sourceTree = "<group>"; };
+		4722D79C1F41C270001038AA /* PersonalAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalAViewController.h; sourceTree = "<group>"; };
+		4722D79D1F41C270001038AA /* PersonalAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalAViewController.m; sourceTree = "<group>"; };
+		4722D79F1F41C279001038AA /* PersonalBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalBViewController.h; sourceTree = "<group>"; };
+		4722D7A01F41C279001038AA /* PersonalBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalBViewController.m; sourceTree = "<group>"; };
+		4722D7A21F41C281001038AA /* PersonalCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCViewController.h; sourceTree = "<group>"; };
+		4722D7A31F41C281001038AA /* PersonalCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCViewController.m; sourceTree = "<group>"; };
+		4722D7A51F41C7B0001038AA /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		4722D7A61F41C7B0001038AA /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		4722D7A81F41C828001038AA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		47B88B151F41CCD600D900E5 /* XZRouterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterModel.h; sourceTree = "<group>"; };
+		47B88B161F41CCD600D900E5 /* XZRouterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZRouterModel.m; sourceTree = "<group>"; };
+		47B88B181F41CCE400D900E5 /* XZRouterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterManager.h; sourceTree = "<group>"; };
+		47B88B191F41CCE400D900E5 /* XZRouterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZRouterManager.m; sourceTree = "<group>"; };
+		47B88B1B1F41CCF300D900E5 /* XZRouterRegisterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterRegisterTool.h; sourceTree = "<group>"; };
+		47B88B1C1F41CCF300D900E5 /* XZRouterRegisterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZRouterRegisterTool.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4722D7231F41BEF2001038AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4722D73C1F41BEF2001038AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4722D7471F41BEF2001038AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4722D71D1F41BEF2001038AA = {
+			isa = PBXGroup;
+			children = (
+				4722D7281F41BEF2001038AA /* RouterManager */,
+				4722D7421F41BEF2001038AA /* RouterManagerTests */,
+				4722D74D1F41BEF2001038AA /* RouterManagerUITests */,
+				4722D7271F41BEF2001038AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4722D7271F41BEF2001038AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7261F41BEF2001038AA /* RouterManager.app */,
+				4722D73F1F41BEF2001038AA /* RouterManagerTests.xctest */,
+				4722D74A1F41BEF2001038AA /* RouterManagerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4722D7281F41BEF2001038AA /* RouterManager */ = {
+			isa = PBXGroup;
+			children = (
+				4722D72C1F41BEF2001038AA /* AppDelegate.h */,
+				4722D72D1F41BEF2001038AA /* AppDelegate.m */,
+				4722D75C1F41BF66001038AA /* Common */,
+				4722D75D1F41BF66001038AA /* Controller */,
+				4722D75E1F41BF66001038AA /* Extension */,
+				4722D75F1F41BF66001038AA /* Header */,
+				4722D7601F41BF66001038AA /* Tool */,
+				4722D7291F41BEF2001038AA /* Supporting Files */,
+			);
+			path = RouterManager;
+			sourceTree = "<group>";
+		};
+		4722D7291F41BEF2001038AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7351F41BEF2001038AA /* Assets.xcassets */,
+				4722D7371F41BEF2001038AA /* LaunchScreen.storyboard */,
+				4722D73A1F41BEF2001038AA /* Info.plist */,
+				4722D72A1F41BEF2001038AA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4722D7421F41BEF2001038AA /* RouterManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7431F41BEF2001038AA /* RouterManagerTests.m */,
+				4722D7451F41BEF2001038AA /* Info.plist */,
+			);
+			path = RouterManagerTests;
+			sourceTree = "<group>";
+		};
+		4722D74D1F41BEF2001038AA /* RouterManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4722D74E1F41BEF2001038AA /* RouterManagerUITests.m */,
+				4722D7501F41BEF2001038AA /* Info.plist */,
+			);
+			path = RouterManagerUITests;
+			sourceTree = "<group>";
+		};
+		4722D75C1F41BF66001038AA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7641F41BF94001038AA /* Base */,
+				4722D7651F41BF94001038AA /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4722D75D1F41BF66001038AA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7731F41C1E9001038AA /* Home */,
+				4722D7741F41C1E9001038AA /* House */,
+				4722D7751F41C1E9001038AA /* Message */,
+				4722D7761F41C1E9001038AA /* Order */,
+				4722D7771F41C1E9001038AA /* Personal */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4722D75E1F41BF66001038AA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7A51F41C7B0001038AA /* UIColor+Extension.h */,
+				4722D7A61F41C7B0001038AA /* UIColor+Extension.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4722D75F1F41BF66001038AA /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7A81F41C828001038AA /* PrefixHeader.pch */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		4722D7601F41BF66001038AA /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				47B88B141F41CCB100D900E5 /* RouterManager */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		4722D7641F41BF94001038AA /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7661F41BFAD001038AA /* BaseViewController.h */,
+				4722D7671F41BFAD001038AA /* BaseViewController.m */,
+				4722D7691F41BFD0001038AA /* BaseNavigationController.h */,
+				4722D76A1F41BFD0001038AA /* BaseNavigationController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4722D7651F41BF94001038AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4722D76C1F41BFF6001038AA /* TabBar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4722D76C1F41BFF6001038AA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4722D76D1F41C00E001038AA /* FDTabBarController.h */,
+				4722D76E1F41C00E001038AA /* FDTabBarController.m */,
+				4722D7701F41C027001038AA /* FKTabBarController.h */,
+				4722D7711F41C027001038AA /* FKTabBarController.m */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4722D7731F41C1E9001038AA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7781F41C1FF001038AA /* HomeAViewController.h */,
+				4722D7791F41C1FF001038AA /* HomeAViewController.m */,
+				4722D77B1F41C208001038AA /* HomeBViewController.h */,
+				4722D77C1F41C208001038AA /* HomeBViewController.m */,
+				4722D77E1F41C210001038AA /* HomeCViewController.h */,
+				4722D77F1F41C210001038AA /* HomeCViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4722D7741F41C1E9001038AA /* House */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7811F41C21C001038AA /* HouseAViewController.h */,
+				4722D7821F41C21C001038AA /* HouseAViewController.m */,
+				4722D7841F41C224001038AA /* HouseBViewController.h */,
+				4722D7851F41C224001038AA /* HouseBViewController.m */,
+				4722D7871F41C22B001038AA /* HouseCViewController.h */,
+				4722D7881F41C22B001038AA /* HouseCViewController.m */,
+			);
+			path = House;
+			sourceTree = "<group>";
+		};
+		4722D7751F41C1E9001038AA /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				4722D78A1F41C235001038AA /* MessageAViewController.h */,
+				4722D78B1F41C235001038AA /* MessageAViewController.m */,
+				4722D78D1F41C23D001038AA /* MessageBViewController.h */,
+				4722D78E1F41C23D001038AA /* MessageBViewController.m */,
+				4722D7901F41C245001038AA /* MessageCViewController.h */,
+				4722D7911F41C245001038AA /* MessageCViewController.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		4722D7761F41C1E9001038AA /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				4722D7931F41C24F001038AA /* OrderAViewController.h */,
+				4722D7941F41C24F001038AA /* OrderAViewController.m */,
+				4722D7961F41C259001038AA /* OrderBViewController.h */,
+				4722D7971F41C259001038AA /* OrderBViewController.m */,
+				4722D7991F41C262001038AA /* OrderCViewController.h */,
+				4722D79A1F41C262001038AA /* OrderCViewController.m */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		4722D7771F41C1E9001038AA /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				4722D79C1F41C270001038AA /* PersonalAViewController.h */,
+				4722D79D1F41C270001038AA /* PersonalAViewController.m */,
+				4722D79F1F41C279001038AA /* PersonalBViewController.h */,
+				4722D7A01F41C279001038AA /* PersonalBViewController.m */,
+				4722D7A21F41C281001038AA /* PersonalCViewController.h */,
+				4722D7A31F41C281001038AA /* PersonalCViewController.m */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		47B88B141F41CCB100D900E5 /* RouterManager */ = {
+			isa = PBXGroup;
+			children = (
+				47B88B151F41CCD600D900E5 /* XZRouterModel.h */,
+				47B88B161F41CCD600D900E5 /* XZRouterModel.m */,
+				47B88B181F41CCE400D900E5 /* XZRouterManager.h */,
+				47B88B191F41CCE400D900E5 /* XZRouterManager.m */,
+				47B88B1B1F41CCF300D900E5 /* XZRouterRegisterTool.h */,
+				47B88B1C1F41CCF300D900E5 /* XZRouterRegisterTool.m */,
+			);
+			path = RouterManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4722D7251F41BEF2001038AA /* RouterManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4722D7531F41BEF2001038AA /* Build configuration list for PBXNativeTarget "RouterManager" */;
+			buildPhases = (
+				4722D7221F41BEF2001038AA /* Sources */,
+				4722D7231F41BEF2001038AA /* Frameworks */,
+				4722D7241F41BEF2001038AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RouterManager;
+			productName = RouterManager;
+			productReference = 4722D7261F41BEF2001038AA /* RouterManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4722D73E1F41BEF2001038AA /* RouterManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4722D7561F41BEF2001038AA /* Build configuration list for PBXNativeTarget "RouterManagerTests" */;
+			buildPhases = (
+				4722D73B1F41BEF2001038AA /* Sources */,
+				4722D73C1F41BEF2001038AA /* Frameworks */,
+				4722D73D1F41BEF2001038AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4722D7411F41BEF2001038AA /* PBXTargetDependency */,
+			);
+			name = RouterManagerTests;
+			productName = RouterManagerTests;
+			productReference = 4722D73F1F41BEF2001038AA /* RouterManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4722D7491F41BEF2001038AA /* RouterManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4722D7591F41BEF2001038AA /* Build configuration list for PBXNativeTarget "RouterManagerUITests" */;
+			buildPhases = (
+				4722D7461F41BEF2001038AA /* Sources */,
+				4722D7471F41BEF2001038AA /* Frameworks */,
+				4722D7481F41BEF2001038AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4722D74C1F41BEF2001038AA /* PBXTargetDependency */,
+			);
+			name = RouterManagerUITests;
+			productName = RouterManagerUITests;
+			productReference = 4722D74A1F41BEF2001038AA /* RouterManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4722D71E1F41BEF2001038AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "周际航";
+				TargetAttributes = {
+					4722D7251F41BEF2001038AA = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = GULEG3228R;
+						ProvisioningStyle = Automatic;
+					};
+					4722D73E1F41BEF2001038AA = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = GULEG3228R;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4722D7251F41BEF2001038AA;
+					};
+					4722D7491F41BEF2001038AA = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = GULEG3228R;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4722D7251F41BEF2001038AA;
+					};
+				};
+			};
+			buildConfigurationList = 4722D7211F41BEF2001038AA /* Build configuration list for PBXProject "RouterManager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4722D71D1F41BEF2001038AA;
+			productRefGroup = 4722D7271F41BEF2001038AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4722D7251F41BEF2001038AA /* RouterManager */,
+				4722D73E1F41BEF2001038AA /* RouterManagerTests */,
+				4722D7491F41BEF2001038AA /* RouterManagerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4722D7241F41BEF2001038AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4722D7391F41BEF2001038AA /* LaunchScreen.storyboard in Resources */,
+				4722D7361F41BEF2001038AA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4722D73D1F41BEF2001038AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4722D7481F41BEF2001038AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4722D7221F41BEF2001038AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4722D76B1F41BFD0001038AA /* BaseNavigationController.m in Sources */,
+				4722D72E1F41BEF2001038AA /* AppDelegate.m in Sources */,
+				4722D7801F41C210001038AA /* HomeCViewController.m in Sources */,
+				4722D78F1F41C23D001038AA /* MessageBViewController.m in Sources */,
+				4722D77D1F41C208001038AA /* HomeBViewController.m in Sources */,
+				4722D7A11F41C279001038AA /* PersonalBViewController.m in Sources */,
+				4722D77A1F41C1FF001038AA /* HomeAViewController.m in Sources */,
+				4722D7721F41C027001038AA /* FKTabBarController.m in Sources */,
+				47B88B171F41CCD600D900E5 /* XZRouterModel.m in Sources */,
+				47B88B1D1F41CCF300D900E5 /* XZRouterRegisterTool.m in Sources */,
+				4722D7861F41C224001038AA /* HouseBViewController.m in Sources */,
+				4722D7891F41C22B001038AA /* HouseCViewController.m in Sources */,
+				4722D78C1F41C235001038AA /* MessageAViewController.m in Sources */,
+				4722D7681F41BFAD001038AA /* BaseViewController.m in Sources */,
+				4722D7981F41C259001038AA /* OrderBViewController.m in Sources */,
+				4722D7831F41C21C001038AA /* HouseAViewController.m in Sources */,
+				4722D79B1F41C262001038AA /* OrderCViewController.m in Sources */,
+				4722D7A71F41C7B0001038AA /* UIColor+Extension.m in Sources */,
+				4722D7921F41C245001038AA /* MessageCViewController.m in Sources */,
+				47B88B1A1F41CCE400D900E5 /* XZRouterManager.m in Sources */,
+				4722D7951F41C24F001038AA /* OrderAViewController.m in Sources */,
+				4722D72B1F41BEF2001038AA /* main.m in Sources */,
+				4722D7A41F41C281001038AA /* PersonalCViewController.m in Sources */,
+				4722D76F1F41C00E001038AA /* FDTabBarController.m in Sources */,
+				4722D79E1F41C270001038AA /* PersonalAViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4722D73B1F41BEF2001038AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4722D7441F41BEF2001038AA /* RouterManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4722D7461F41BEF2001038AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4722D74F1F41BEF2001038AA /* RouterManagerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4722D7411F41BEF2001038AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4722D7251F41BEF2001038AA /* RouterManager */;
+			targetProxy = 4722D7401F41BEF2001038AA /* PBXContainerItemProxy */;
+		};
+		4722D74C1F41BEF2001038AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4722D7251F41BEF2001038AA /* RouterManager */;
+			targetProxy = 4722D74B1F41BEF2001038AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4722D7371F41BEF2001038AA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4722D7381F41BEF2001038AA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4722D7511F41BEF2001038AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4722D7521F41BEF2001038AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4722D7541F41BEF2001038AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GULEG3228R;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${SRCROOT}/RouterManager/Header/PrefixHeader.pch";
+				INFOPLIST_FILE = RouterManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.zjh.com.RouterManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4722D7551F41BEF2001038AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GULEG3228R;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${SRCROOT}/RouterManager/Header/PrefixHeader.pch";
+				INFOPLIST_FILE = RouterManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.zjh.com.RouterManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4722D7571F41BEF2001038AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GULEG3228R;
+				INFOPLIST_FILE = RouterManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.zjh.com.RouterManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RouterManager.app/RouterManager";
+			};
+			name = Debug;
+		};
+		4722D7581F41BEF2001038AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GULEG3228R;
+				INFOPLIST_FILE = RouterManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.zjh.com.RouterManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RouterManager.app/RouterManager";
+			};
+			name = Release;
+		};
+		4722D75A1F41BEF2001038AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = GULEG3228R;
+				INFOPLIST_FILE = RouterManagerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.zjh.com.RouterManagerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RouterManager;
+			};
+			name = Debug;
+		};
+		4722D75B1F41BEF2001038AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = GULEG3228R;
+				INFOPLIST_FILE = RouterManagerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.zjh.com.RouterManagerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RouterManager;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4722D7211F41BEF2001038AA /* Build configuration list for PBXProject "RouterManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4722D7511F41BEF2001038AA /* Debug */,
+				4722D7521F41BEF2001038AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4722D7531F41BEF2001038AA /* Build configuration list for PBXNativeTarget "RouterManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4722D7541F41BEF2001038AA /* Debug */,
+				4722D7551F41BEF2001038AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4722D7561F41BEF2001038AA /* Build configuration list for PBXNativeTarget "RouterManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4722D7571F41BEF2001038AA /* Debug */,
+				4722D7581F41BEF2001038AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4722D7591F41BEF2001038AA /* Build configuration list for PBXNativeTarget "RouterManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4722D75A1F41BEF2001038AA /* Debug */,
+				4722D75B1F41BEF2001038AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4722D71E1F41BEF2001038AA /* Project object */;
+}
