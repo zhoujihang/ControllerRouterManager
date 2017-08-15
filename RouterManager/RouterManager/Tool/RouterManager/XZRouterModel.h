@@ -16,6 +16,7 @@
 
 + (XZRouterModel * _Nonnull)HomeA_B_C;
 + (XZRouterModel * _Nonnull)HouseA_B_C;
++ (XZRouterModel * _Nonnull)MessageA_B_C;
 + (XZRouterModel * _Nonnull)OrderC;
 + (XZRouterModel * _Nonnull)OrderC_PersonalA_B_C;
 + (XZRouterModel * _Nonnull)OrderB_Login_Login_OrderC_Login;

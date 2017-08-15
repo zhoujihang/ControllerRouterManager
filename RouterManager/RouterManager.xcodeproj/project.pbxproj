@@ -46,6 +46,7 @@
 		47B88B2F1F42E71100D900E5 /* Login.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B2E1F42E71100D900E5 /* Login.json */; };
 		47B88B311F42E73300D900E5 /* LoginX5.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B301F42E73300D900E5 /* LoginX5.json */; };
 		47B88B331F42E76700D900E5 /* Login_PersonalA_OrderC.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B321F42E76700D900E5 /* Login_PersonalA_OrderC.json */; };
+		47B88B351F42F28C00D900E5 /* MessageA_B_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B341F42F28C00D900E5 /* MessageA_B_C.json */; };
 		D4543EF44B5109BDCA99D22B /* Pods_RouterManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEF68DD58CBD311EB1C0C87 /* Pods_RouterManager.framework */; };
 		F54AC1F4841ECAE702074922 /* Pods_RouterManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3A6D22A4185EB3DFA44E7B /* Pods_RouterManagerTests.framework */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,7 @@
 		47B88B2E1F42E71100D900E5 /* Login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Login.json; sourceTree = "<group>"; };
 		47B88B301F42E73300D900E5 /* LoginX5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoginX5.json; sourceTree = "<group>"; };
 		47B88B321F42E76700D900E5 /* Login_PersonalA_OrderC.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Login_PersonalA_OrderC.json; sourceTree = "<group>"; };
+		47B88B341F42F28C00D900E5 /* MessageA_B_C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MessageA_B_C.json; sourceTree = "<group>"; };
 		8A3EF0F6F73E92C15B89E714 /* Pods-RouterManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouterManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RouterManagerTests/Pods-RouterManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D3A6D22A4185EB3DFA44E7B /* Pods_RouterManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouterManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEF68DD58CBD311EB1C0C87 /* Pods_RouterManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouterManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,8 +262,8 @@
 				47B88B1F1F42CEB500D900E5 /* Login */,
 				4722D7731F41C1E9001038AA /* Home */,
 				4722D7741F41C1E9001038AA /* House */,
-				4722D7751F41C1E9001038AA /* Message */,
 				4722D7761F41C1E9001038AA /* Order */,
+				4722D7751F41C1E9001038AA /* Message */,
 				4722D7771F41C1E9001038AA /* Personal */,
 			);
 			path = Controller;
@@ -415,6 +417,7 @@
 			children = (
 				47B88B241F42E37300D900E5 /* HomeA_B_C.json */,
 				47B88B261F42E68100D900E5 /* HouseA_B_C.json */,
+				47B88B341F42F28C00D900E5 /* MessageA_B_C.json */,
 				47B88B281F42E69E00D900E5 /* OrderC.json */,
 				47B88B2A1F42E6CC00D900E5 /* OrderC_PersonalA_B_C.json */,
 				47B88B2C1F42E70500D900E5 /* OrderB_Login_Login_OrderC_Login.json */,
@@ -574,6 +577,7 @@
 				47B88B291F42E69E00D900E5 /* OrderC.json in Resources */,
 				47B88B331F42E76700D900E5 /* Login_PersonalA_OrderC.json in Resources */,
 				4722D7391F41BEF2001038AA /* LaunchScreen.storyboard in Resources */,
+				47B88B351F42F28C00D900E5 /* MessageA_B_C.json in Resources */,
 				4722D7361F41BEF2001038AA /* Assets.xcassets in Resources */,
 				47B88B271F42E68100D900E5 /* HouseA_B_C.json in Resources */,
 			);

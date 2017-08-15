@@ -24,6 +24,9 @@
 + (XZRouterModel *)HouseA_B_C {
     return [self fakeModel:@"HouseA_B_C"];
 }
++ (XZRouterModel *)MessageA_B_C {
+    return [self fakeModel:@"MessageA_B_C"];
+}
 + (XZRouterModel *)OrderC {
     return [self fakeModel:@"OrderC"];
 }

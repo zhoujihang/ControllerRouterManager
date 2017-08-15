@@ -103,7 +103,7 @@
     UINavigationController *fromNav = fromVC.navigationController;
     XZRouterManager *shared = [self shared];
     
-    // 取消当前页面下presented的页面
+    // 取消当前页面下presented的页面，如 UIAlertController
     [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:nil];
     
     if (tabIndex == NSNotFound) {

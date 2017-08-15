@@ -35,7 +35,7 @@
     NSString *text = [super overload_cellTextForRowAtIndexPath:indexPath];
     
     if (indexPath.row == 0) {
-        
+        text = @"MessageA_B_C";
     } else if (indexPath.row == 1) {
         
     }
@@ -45,7 +45,7 @@
 - (void)overload_cellDidSelectAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        
+        [XZRouterManager routerWithModel:[XZRouterModel MessageA_B_C] fromVC:self];
     } else if (indexPath.row == 1) {
         
     }
