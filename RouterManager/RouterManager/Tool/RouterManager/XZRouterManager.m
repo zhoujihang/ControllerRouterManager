@@ -96,28 +96,14 @@
         return;
     }
     
-    NSMutableArray<XZRouterNodeModel *> *marr = [model.list mutableCopy];
-    XZRouterNodeModel *firstNode = marr.firstObject;
-    BOOL animated = marr.count == 1;
-    NSInteger tabIndex = [XZRouterRegisterTool indexOfRootPath:firstNode.path];
+    BOOL animated = model.list.count == 1;
     UINavigationController *fromNav = fromVC.navigationController;
     XZRouterManager *shared = [self shared];
     
     // 取消当前页面下presented的页面，如 UIAlertController
     [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:nil];
     
-    if (tabIndex == NSNotFound) {
-        // 直接跳转
-        [shared private_recursiveShow:marr index:0 toNavigation:fromNav animated:animated completion:nil];
-    } else {
-        // 返回根路径，选中目标tab
-        UINavigationController *targetNav = [self private_backToTabBarFromVC:fromVC selectTabBarIndex:tabIndex modelList:marr];
-        if (targetNav == nil) {return;}
-        [marr removeObjectAtIndex:0];
-        
-        // 新节点中依次跳转
-        [shared private_recursiveShow:marr index:0 toNavigation:targetNav animated:NO completion:nil];
-    }
+    [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:animated completion:^(UINavigationController *newNav) {}];
     XZDebugLog(@"路由完成");
 }
 
@@ -127,8 +113,6 @@
     
     XZRouterNodeModel *node = modelList[index];
     NSString *path = node.path;
-    Class class = [self pathMDic][path];
-    UIViewController *newVC = [[class alloc] initWithRouterParameters:node.param];
     
     __weak typeof (self) weakSelf = self;
     void (^finalBlock)(UINavigationController *) = ^(UINavigationController *newNav) {
@@ -136,49 +120,62 @@
         [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:newNav animated:NO completion:completion];
     };
     
-    if ([self.presentMArr containsObject:path]) {
-        UINavigationController *newNav = [[BaseNavigationController alloc] initWithRootViewController:newVC];
-        [nav presentViewController:newNav animated:animated completion:^{
-            finalBlock(newNav);
-        }];
+    if ([self.rootMArr containsObject:path]) {
+        // 返回选中根节点
+        [self private_selectTabBarRoot:modelList index:index fromNavigation:nav animated:animated completion:completion];
     } else {
-        [nav pushViewController:newVC animated:animated];
-        finalBlock(nav);
+        Class class = self.pathMDic[path];
+        UIViewController *newVC = [[class alloc] initWithRouterParameters:node.param];
+        if ([self.presentMArr containsObject:path]) {
+            // present
+            UINavigationController *newNav = [[BaseNavigationController alloc] initWithRootViewController:newVC];
+            [nav presentViewController:newNav animated:animated completion:^{
+                finalBlock(newNav);
+            }];
+        } else {
+            // push
+            [nav pushViewController:newVC animated:animated];
+            finalBlock(nav);
+        }
     }
 }
 
-+ (UINavigationController *)private_backToTabBarFromVC:(UIViewController *)fromVC selectTabBarIndex:(NSInteger)index modelList:(NSArray<XZRouterNodeModel *> *)list {
+- (void)private_selectTabBarRoot:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index fromNavigation:(UINavigationController *)nav animated:(BOOL)animated completion:(void (^)(UINavigationController *newNav))completion {
+    if (modelList.count == 0) {return;}
+    if (index >= modelList.count) {return;}
+    XZRouterNodeModel *node = modelList[index];
+    
     UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    if (![rootVC isKindOfClass:[UITabBarController class]]) {return nil;}
+    if (![rootVC isKindOfClass:[UITabBarController class]]) {return;}
     UITabBarController *tabVC = (UITabBarController *)rootVC;
-    if (index >= tabVC.childViewControllers.count) {return nil;}
-    if (![tabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {return nil;}
+    
+    // fromNav
+    if (![tabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {return;}
     UINavigationController *fromNav = (UINavigationController *)tabVC.selectedViewController;
     
-    BOOL animated = (list.count==1 && tabVC.selectedIndex==index) ? YES : NO;
+    // fromNav clear
+    [fromNav.presentedViewController dismissViewControllerAnimated:animated completion:^{
+        if (node.rootInfo.isClear) {
+            [fromNav router_popToRootViewController:NO];
+        }
+    }];
     
-    // dismiss present的视图
-    UIViewController *vc = fromVC;
-    while (vc.presentingViewController != nil) {
-        vc = vc.presentingViewController;
-    }
-    if (vc != fromVC) {
-        [vc dismissViewControllerAnimated:animated completion:nil];
-        animated = NO;
-    }
-    
-    // pop 当前nav
-    [fromNav router_popToRootViewController:animated];
-    
-    // 选中目标nav
-    tabVC.selectedIndex = index;
-    if (![tabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {return nil;}
-    UINavigationController *targetNav = (UINavigationController *)tabVC.selectedViewController;
+    // targetNav
+    NSInteger targetIndex = [XZRouterRegisterTool indexOfRootPath:node.path];
+    if (targetIndex >= tabVC.childViewControllers.count) {return;}
+    if (![tabVC.childViewControllers[targetIndex] isKindOfClass:[UINavigationController class]]) {return;}
+    UINavigationController *targetNav = (UINavigationController *)tabVC.childViewControllers[targetIndex];
     [targetNav router_popToRootViewController:NO];
     
-    return  targetNav;
+    // targetNav selected
+    __weak typeof (self) weakSelf = self;
+    void (^finalBlock)(UINavigationController *) = ^(UINavigationController *newNav) {
+        if (index==modelList.count-1 && completion!=nil) {completion(newNav);}
+        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:newNav animated:NO completion:completion];
+    };
+    tabVC.selectedIndex = targetIndex;
+    finalBlock(targetNav);
 }
-
 
 + (BOOL)private_validateModel:(XZRouterModel *)model {
     if (model.list.count == 0) {return NO;}

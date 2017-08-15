@@ -45,6 +45,9 @@
 + (XZRouterModel *)Login_PersonalA_OrderC {
     return [self fakeModel:@"Login_PersonalA_OrderC"];
 }
++ (XZRouterModel *)PersonalB_MessageA_B_C_HomeA_B_C {
+    return [self fakeModel:@"PersonalB_MessageA_B_C_HomeA_B_C"];
+}
 
 + (XZRouterModel *)fakeModel:(NSString *)filePath {
     NSString *path = [[NSBundle mainBundle] pathForResource:filePath ofType:@".json"];
@@ -57,5 +60,9 @@
 @end
 
 @implementation XZRouterNodeModel
+
+@end
+
+@implementation XZRouterRootNodeInfoModel
 
 @end

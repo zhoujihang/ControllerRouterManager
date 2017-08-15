@@ -7,6 +7,7 @@
 //
 
 #import "PersonalAViewController.h"
+#import "XZTabBarManager.h"
 
 @interface PersonalAViewController ()
 
@@ -34,9 +35,11 @@
     NSString *text = [super overload_cellTextForRowAtIndexPath:indexPath];
     
     if (indexPath.row == 0) {
-        
+        text = @"switch to FD";
     } else if (indexPath.row == 1) {
-        
+        text = @"switch to FK";
+    } else if (indexPath.row == 2) {
+        text = @"PersonalB_MessageA_B_C_HomeA_B_C";
     }
     
     return text;
@@ -44,9 +47,11 @@
 - (void)overload_cellDidSelectAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        
+        [[XZTabBarManager shared] switchToFD];
     } else if (indexPath.row == 1) {
-        
+        [[XZTabBarManager shared] switchToFK];
+    } else if (indexPath.row == 2) {
+        [XZRouterManager routerWithModel:[XZRouterModel PersonalB_MessageA_B_C_HomeA_B_C] fromVC:self];
     }
     
 }

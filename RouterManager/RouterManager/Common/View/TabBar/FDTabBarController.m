@@ -50,7 +50,7 @@
     UIViewController *personalNav = [[BaseNavigationController alloc] initWithRootViewController:[PersonalAViewController new]];
     personalNav.tabBarItem.image = [UIImage imageNamed:@"discover_me"];
     personalNav.tabBarItem.selectedImage = [UIImage imageNamed:@"discover_me_select"];
-    personalNav.tabBarItem.title = @"个人";
+    personalNav.tabBarItem.title = @"房东";
     
     [self setViewControllers:@[homeNav, houseNav, orderNav, messageNav, personalNav]];
 }

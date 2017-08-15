@@ -1,0 +1,34 @@
+{
+    "list": [
+             {
+             "path": "PersonalB"
+             },
+             {
+             "path": "MessageA",
+             "rootInfo": {
+             "isClear": 0
+             }
+             },
+             {
+             "path": "MessageB"
+             },
+             {
+             "path": "MessageC"
+             },
+             {
+             "path": "HomeA",
+             "rootInfo": {
+             "isClear": 0
+             }
+             },
+             {
+             "path": "HomeB"
+             },
+             {
+             "path": "HomeC",
+             "param": {
+             "url": "http://www.hao123.com"
+             }
+             }
+             ]
+}
