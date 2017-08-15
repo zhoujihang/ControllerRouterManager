@@ -10,11 +10,27 @@
 
 @interface BaseViewController ()
 
-@property (nonatomic, strong, nullable) UITableView *base_tableView;
+@property (nonatomic, strong, readwrite, nullable) UITableView *base_tableView;
 
 @end
 
 @implementation BaseViewController
+
++ (BOOL)router_enable {
+    return NO;
+}
+
++ (BOOL)router_validateRouterParameters:(NSDictionary *)param {
+    return YES;
+}
+
+- (instancetype)initWithRouterParameters:(NSDictionary *)param {
+    if (![[self class] router_validateRouterParameters:param]) {return nil;}
+    if (self = [self init]) {
+    }
+    return self;
+}
+
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {

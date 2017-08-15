@@ -14,6 +14,10 @@
 
 @implementation OrderBViewController
 
++ (BOOL)router_enable {
+    return YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

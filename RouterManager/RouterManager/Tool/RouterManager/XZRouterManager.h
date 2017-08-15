@@ -7,7 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XZRouterModel.h"
+
+@protocol XZRoutableProtocol <NSObject>
+
+- (instancetype)initWithRouterParameters:(NSDictionary *)param;
++ (BOOL)router_validateRouterParameters:(NSDictionary *)param;
++ (BOOL)router_enable;
+
+@end
+
 
 @interface XZRouterManager : NSObject
+
++ (instancetype)shared;
+
++ (void)routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC;
++ (BOOL)validateModel:(XZRouterModel *)model;
+
+- (void)registerPath:(NSString *)path forClass:(Class)class;
+- (void)registerRootPaths:(NSArray<NSString *>*)paths;
+- (void)registerPresentPaths:(NSArray<NSString *>*)paths;
 
 @end

@@ -1,0 +1,16 @@
+{
+    "list": [
+             {
+             "path": "HomeA"
+             },
+             {
+             "path": "HomeB"
+             },
+             {
+             "path": "HomeC",
+             "param": {
+             "url": "http://www.baidu.com"
+             }
+             }
+             ]
+}

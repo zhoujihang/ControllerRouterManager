@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FDTabBarController.h"
 #import "FKTabBarController.h"
+#import "XZRouterRegisterTool.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [XZRouterRegisterTool setup];
     
     UIWindow *win = [[UIWindow alloc] init];
     win.rootViewController = [[FDTabBarController alloc] init];

@@ -14,6 +14,10 @@
 
 @implementation HouseAViewController
 
++ (BOOL)router_enable {
+    return YES;
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.hidesBottomBarWhenPushed = NO;

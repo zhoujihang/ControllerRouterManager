@@ -14,11 +14,14 @@
 
 @implementation HouseBViewController
 
++ (BOOL)router_enable {
+    return YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
 
 - (NSString *)overload_cellTextForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *text = [super overload_cellTextForRowAtIndexPath:indexPath];

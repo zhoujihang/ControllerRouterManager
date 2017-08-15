@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XZRouterManager.h"
 
-@interface BaseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface BaseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XZRoutableProtocol>
 
-- (NSString *)overload_cellTextForRowAtIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
-- (void)overload_cellDidSelectAtIndexPath:(NSIndexPath *)indexPath;
+@property (nonatomic, strong, readonly, nullable) UITableView *base_tableView;
+
+- (NSString *_Nonnull)overload_cellTextForRowAtIndexPath:(NSIndexPath *_Nonnull)indexPath NS_REQUIRES_SUPER;
+- (void)overload_cellDidSelectAtIndexPath:(NSIndexPath *_Nonnull)indexPath;
 
 @end
