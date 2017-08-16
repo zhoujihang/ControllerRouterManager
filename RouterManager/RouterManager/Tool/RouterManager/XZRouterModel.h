@@ -28,6 +28,9 @@
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_B_C_Clear;
 + (XZRouterModel * _Nonnull)Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login;
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_C;
++ (XZRouterModel * _Nonnull)PersonalB_MessageAFD_Login_C_HomeAFD_C;
+
++ (instancetype _Nonnull)model:(NSArray *_Nonnull)nodeList;
 @end
 
 @interface XZRouterNodeModel : NSObject
@@ -36,6 +39,7 @@
 @property (nonatomic, copy, nullable) NSDictionary *param;
 @property (nonatomic, strong, nullable) XZRouterRootNodeInfoModel *rootInfo;
 
++ (instancetype _Nonnull)model:(NSString *_Nonnull)path param:(NSDictionary *_Nullable)param;
 @end
 
 @interface XZRouterRootNodeInfoModel : NSObject     // 跳转根节点的额外逻辑

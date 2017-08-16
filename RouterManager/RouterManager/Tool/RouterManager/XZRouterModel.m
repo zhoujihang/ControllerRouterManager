@@ -17,6 +17,12 @@
              };
 }
 
++ (instancetype)model:(NSArray *)nodeList {
+    XZRouterModel *model = [[XZRouterModel alloc] init];
+    model.list = nodeList;
+    return model;
+}
+
 #warning "fake model"
 + (XZRouterModel *)HomeA_B_C {
     return [self fakeModel:@"HomeA_B_C"];
@@ -57,6 +63,9 @@
 + (XZRouterModel *)PersonalB_MessageA_B_C_HomeA_C {
     return [self fakeModel:@"PersonalB_MessageA_B_C_HomeA_C"];
 }
++ (XZRouterModel *)PersonalB_MessageAFD_Login_C_HomeAFD_C {
+    return [self fakeModel:@"PersonalB_MessageAFD_Login_C_HomeAFD_C"];
+}
 + (XZRouterModel *)fakeModel:(NSString *)filePath {
     NSString *path = [[NSBundle mainBundle] pathForResource:filePath ofType:@".json"];
     NSString *content = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
@@ -68,6 +77,13 @@
 @end
 
 @implementation XZRouterNodeModel
+
++ (instancetype)model:(NSString *)path param:(NSDictionary *)param {
+    XZRouterNodeModel *model = [[XZRouterNodeModel alloc] init];
+    model.path = path;
+    model.param = param;
+    return model;
+}
 
 @end
 

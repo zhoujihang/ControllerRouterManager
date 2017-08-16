@@ -8,6 +8,7 @@
 
 #import "HomeAViewController.h"
 #import "XZRouterManager.h"
+#import "HomeBViewController.h"
 @interface HomeAViewController ()
 
 @end
@@ -37,6 +38,8 @@
         text = @"Home_A_B_C";
     } else if (indexPath.row == 1) {
         text = @"Home_A_B_C[缺url]";
+    } else if (indexPath.row == 2) {
+        text = @"HomeB";
     }
     
     return text;
@@ -49,6 +52,8 @@
         XZRouterModel *model = [XZRouterModel HomeA_B_C];
         [model.list.lastObject setParam:nil];
         [XZRouterManager routerWithModel:model fromVC:self];
+    } else if (indexPath.row == 2) {
+        [self.navigationController pushViewController:[HomeBViewController new] animated:NO];
     }
     
 }

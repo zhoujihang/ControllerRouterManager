@@ -10,10 +10,16 @@
 #import "FDTabBarController.h"
 #import "FKTabBarController.h"
 
+typedef NS_ENUM(NSUInteger, XZTabBarType) {
+    XZTabBarType_FD,
+    XZTabBarType_FK,
+};
+
 @interface XZTabBarManager : NSObject
 
 @property (nonatomic, strong, readonly, nullable) FDTabBarController *tabBarVC_FD;
 @property (nonatomic, strong, readonly, nullable) FKTabBarController *tabBarVC_FK;
+@property (nonatomic, assign, readonly) XZTabBarType currentType;
 
 + (instancetype _Nonnull )shared;
 

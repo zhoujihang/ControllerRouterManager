@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, XZTabBarRouterType) {
+    XZTabBarRouterType_none = 0,
+    XZTabBarRouterType_FD = 1 << 0,
+    XZTabBarRouterType_FK = 1 << 1,
+    XZTabBarRouterType_both = XZTabBarRouterType_FD | XZTabBarRouterType_FK ,
+};
+
+FOUNDATION_EXTERN NSString *const kRouterTabBar_FD;
+FOUNDATION_EXTERN NSString *const kRouterTabBar_FK;
+
 FOUNDATION_EXTERN NSString *const kRouter_HomeA;
 FOUNDATION_EXTERN NSString *const kRouter_HomeB;
 FOUNDATION_EXTERN NSString *const kRouter_HomeC;
@@ -30,7 +40,7 @@ FOUNDATION_EXTERN NSString *const kRouter_Login;
 
 + (void)setup;
 
-+ (NSInteger)indexOfRootPath:(NSString *)path;
++ (NSInteger)indexOfRootPath:(NSString *)path withTabBarType:(XZTabBarRouterType)type;
 
 @end
 

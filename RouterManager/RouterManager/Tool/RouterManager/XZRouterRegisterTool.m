@@ -25,6 +25,9 @@
 #import "PersonalCViewController.h"
 #import "LoginViewController.h"
 
+
+NSString *const kRouterTabBar_FD = @"FD";
+NSString *const kRouterTabBar_FK = @"FK";
 NSString *const kRouter_HomeA = @"HomeA";
 NSString *const kRouter_HomeB = @"HomeB";
 NSString *const kRouter_HomeC = @"HomeC";
@@ -68,22 +71,39 @@ NSString *const kRouter_Login = @"Login";
     [shared registerPath:kRouter_PersonalC forClass:[PersonalCViewController class]];
     [shared registerPath:kRouter_Login forClass:[LoginViewController class]];
     
-    [shared registerRootPaths:@[kRouter_HomeA, kRouter_HouseA, kRouter_OrderA, kRouter_MessageA, kRouter_PersonalA]];
+    
+    [shared registerRootPaths:@[kRouter_HomeA, kRouter_HouseA, kRouter_OrderA, kRouter_MessageA, kRouter_PersonalA] forRootName:kRouterTabBar_FD];
+    [shared registerRootPaths:@[kRouter_HomeA, kRouter_OrderA, kRouter_MessageA, kRouter_PersonalA] forRootName:kRouterTabBar_FK];
     [shared registerPresentPaths:@[kRouter_Login]];
+    
+    
 }
 
-+ (NSInteger)indexOfRootPath:(NSString *)path {
++ (NSInteger)indexOfRootPath:(NSString *)path withTabBarType:(XZTabBarRouterType)type {
+    if (type == XZTabBarRouterType_none || type == XZTabBarRouterType_both) {return NSNotFound;}
     NSInteger index = NSNotFound;
-    if ([path isEqualToString:kRouter_HomeA]) {
-        index = 0;
-    } else if ([path isEqualToString:kRouter_HouseA]) {
-        index = 1;
-    } else if ([path isEqualToString:kRouter_OrderA]) {
-        index = 2;
-    } else if ([path isEqualToString:kRouter_MessageA]) {
-        index = 3;
-    } else if ([path isEqualToString:kRouter_PersonalA]) {
-        index = 4;
+    if (type == XZTabBarRouterType_FD) {
+        if ([path isEqualToString:kRouter_HomeA]) {
+            index = 0;
+        } else if ([path isEqualToString:kRouter_HouseA]) {
+            index = 1;
+        } else if ([path isEqualToString:kRouter_OrderA]) {
+            index = 2;
+        } else if ([path isEqualToString:kRouter_MessageA]) {
+            index = 3;
+        } else if ([path isEqualToString:kRouter_PersonalA]) {
+            index = 4;
+        }
+    } else if (type == XZTabBarRouterType_FK) {
+        if ([path isEqualToString:kRouter_HomeA]) {
+            index = 0;
+        } else if ([path isEqualToString:kRouter_OrderA]) {
+            index = 1;
+        } else if ([path isEqualToString:kRouter_MessageA]) {
+            index = 2;
+        } else if ([path isEqualToString:kRouter_PersonalA]) {
+            index = 3;
+        }
     }
     return index;
 }

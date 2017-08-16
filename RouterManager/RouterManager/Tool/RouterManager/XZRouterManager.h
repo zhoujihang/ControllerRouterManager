@@ -26,7 +26,7 @@
 + (BOOL)validateModel:(XZRouterModel *)model;
 
 - (void)registerPath:(NSString *)path forClass:(Class)class;
-- (void)registerRootPaths:(NSArray<NSString *>*)paths;
+- (void)registerRootPaths:(NSArray<NSString *> *)paths forRootName:(NSString *)name;
 - (void)registerPresentPaths:(NSArray<NSString *>*)paths;
 
 @end

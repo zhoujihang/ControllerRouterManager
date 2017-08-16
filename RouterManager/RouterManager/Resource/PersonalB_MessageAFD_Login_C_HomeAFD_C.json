@@ -1,0 +1,33 @@
+{
+    "list": [
+             {
+             "path": "PersonalB"
+             },
+             {
+             "path": "MessageA",
+             "rootInfo": {
+             "targetTab": "FK",
+             "isSaveHistory": 1
+             }
+             },
+             {
+             "path": "Login"
+             },
+             {
+             "path": "MessageC"
+             },
+             {
+             "path": "HomeA",
+             "rootInfo": {
+             "targetTab": "FK",
+             "isSaveHistory": 1
+             }
+             },
+             {
+             "path": "HomeC",
+             "param": {
+             "url": "http://www.hao123.com"
+             }
+             }
+             ]
+}

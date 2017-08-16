@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong, readwrite, nullable) FDTabBarController *tabBarVC_FD;
 @property (nonatomic, strong, readwrite, nullable) FKTabBarController *tabBarVC_FK;
+@property (nonatomic, assign, readwrite) XZTabBarType currentType;
 
 @end
 
@@ -37,11 +38,15 @@
 - (void)switchToFD {
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
     win.rootViewController = [self tabBarVC_FD];
+    self.currentType = XZTabBarType_FD;
+    XZDebugLog(@"切换到 FD");
 }
 
 - (void)switchToFK {
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
     win.rootViewController = [self tabBarVC_FK];
+    self.currentType = XZTabBarType_FK;
+    XZDebugLog(@"切换到 FK");
 }
 
 @end

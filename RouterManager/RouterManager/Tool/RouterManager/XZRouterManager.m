@@ -9,11 +9,18 @@
 #import "XZRouterManager.h"
 #import "XZRouterRegisterTool.h"
 #import "BaseNavigationController.h"
+#import "XZTabBarManager.h"
 
 @interface UINavigationController (XZRouter)
 
 - (void)router_popToRootViewController:(BOOL)animated;
     
+@end
+
+@interface UITabBarController (XZRouter)
+
+- (void)router_allChildNavigationControllersPopToRoot;
+
 @end
 
 @interface XZRouterManager (XZRouter)
@@ -27,7 +34,7 @@
 @interface XZRouterManager()
 
 @property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, Class> *pathMDic;
-@property (nonatomic, strong, nullable) NSMutableArray<NSString *> *rootMArr;
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, NSArray<NSString *>*> *rootMDic;
 @property (nonatomic, strong, nullable) NSMutableArray<NSString *> *presentMArr;
 
 @property (nonatomic, strong, nullable) XZRouterModel *currentModel;
@@ -49,7 +56,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.pathMDic = [@{} mutableCopy];
-        self.rootMArr = [@[] mutableCopy];
+        self.rootMDic = [@{} mutableCopy];
         self.presentMArr = [@[] mutableCopy];
     }
     return self;
@@ -70,13 +77,30 @@
     }
     self.pathMDic[path] = class;
 }
-- (void)registerRootPaths:(NSArray<NSString *> *)paths {
-    self.rootMArr = [paths mutableCopy];
+- (void)registerRootPaths:(NSArray<NSString *> *)paths forRootName:(NSString *)name {
+    if (!([name isKindOfClass:[NSString class]] && name.length > 0)) {
+        NSAssert(false, @"路由注册失败， rootName %@ 必须为非空字符串", name);
+        return;
+    }
+    if ((self.rootMDic[name] != nil)) {
+        NSAssert(false, @"路由注册失败， rootName 不可覆盖注册", name);
+        return;
+    }
+    if (!(paths.count > 0)) {
+        NSAssert(false, @"路由注册失败， rootPaths %@ 必须为非空数组", paths);
+        return;
+    }
+    for (NSString *path in paths) {
+        if (self.pathMDic[path] == nil) {
+            NSAssert(false, @"路由注册失败， rootPaths 中包含的路径 path %@ 必须为已注册的路径", path);
+            return;
+        }
+    }
+    self.rootMDic[name] = paths;
 }
 - (void)registerPresentPaths:(NSArray<NSString *> *)paths{
     self.presentMArr = [paths mutableCopy];
 }
-
 + (void)routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC {
     [self private_routerWithModel:model fromVC:fromVC];
 }
@@ -111,6 +135,20 @@
     XZDebugLog(@"路由完成");
 }
 
+- (XZTabBarRouterType)private_tabBarRouterTypeForPathName:(NSString *)pathName {
+    __block XZTabBarRouterType type = XZTabBarRouterType_none;
+    [self.rootMDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * _Nonnull stop) {
+        if (![obj containsObject:pathName]) {return;}
+        
+        if ([key isEqualToString:kRouterTabBar_FD]) {
+            type = type | XZTabBarRouterType_FD;
+        } else if ([key isEqualToString:kRouterTabBar_FK]) {
+            type = type | XZTabBarRouterType_FK;
+        }
+    }];
+    return type;
+}
+
 - (void)private_recursiveShow:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index toNavigation:(UINavigationController *)nav animated:(BOOL)animated completion:(void (^)(UINavigationController *newNav))completion {
     if (modelList.count == 0) {return;}
     if (index >= modelList.count) {return;}
@@ -123,7 +161,7 @@
         [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:newNav animated:NO completion:completion];
     };
     
-    if ([self.rootMArr containsObject:path]) {
+    if ([self private_tabBarRouterTypeForPathName:path] != XZTabBarRouterType_none) {
         // 返回选中根节点
         [self private_selectTabBarRoot:modelList index:index fromNavigation:nav animated:animated completion:completion];
     } else {
@@ -150,26 +188,40 @@
     
     UIViewController *rootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     if (![rootVC isKindOfClass:[UITabBarController class]]) {return;}
-    UITabBarController *tabVC = (UITabBarController *)rootVC;
+    UITabBarController *currentTabVC = (UITabBarController *)rootVC;
     
     // 1 得到 fromNav
-    if (![tabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {return;}
-    UINavigationController *fromNav = (UINavigationController *)tabVC.selectedViewController;
+    if (![currentTabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {return;}
+    UINavigationController *fromNav = (UINavigationController *)currentTabVC.selectedViewController;
     
     __weak typeof (self) weakSelf = self;
     void (^dismissCompletionBlock)() = ^() {
-        if (node.rootInfo.isSaveHistory == NO) {
+        if (node.rootInfo.isSaveHistory == NO ) {
             [fromNav router_popToRootViewController:animated];
         }
         // 3 得到 targetNav
-        NSInteger targetIndex = [XZRouterRegisterTool indexOfRootPath:node.path];
-        if (targetIndex >= tabVC.childViewControllers.count) {return;}
-        if (![tabVC.childViewControllers[targetIndex] isKindOfClass:[UINavigationController class]]) {return;}
-        UINavigationController *targetNav = (UINavigationController *)tabVC.childViewControllers[targetIndex];
+        XZTabBarRouterType targetType = [self private_targetTabBarTypeWithModel:node];
+        UITabBarController *targetTabVC = targetType==XZTabBarRouterType_FD ? [XZTabBarManager shared].tabBarVC_FD : [XZTabBarManager shared].tabBarVC_FK;
+        NSInteger targetIndex = [XZRouterRegisterTool indexOfRootPath:node.path withTabBarType:targetType];
+        if (targetIndex >= targetTabVC.childViewControllers.count) {return;}
+        if (![targetTabVC.childViewControllers[targetIndex] isKindOfClass:[UINavigationController class]]) {return;}
+        
+        // 切换tabbar
+        if (currentTabVC != targetTabVC) {
+            if (targetType == XZTabBarRouterType_FD) {
+                [[XZTabBarManager shared] switchToFD];
+            } else {
+                [[XZTabBarManager shared] switchToFK];
+            }
+            // 之前的tabbar必须回到根位置
+            [currentTabVC router_allChildNavigationControllersPopToRoot];
+        }
+        
+        UINavigationController *targetNav = (UINavigationController *)targetTabVC.childViewControllers[targetIndex];
         [targetNav router_popToRootViewController:NO];
         
         // 4 清理 targetNav 的层级，选中tabVC相应的节点
-        tabVC.selectedIndex = targetIndex;
+        targetTabVC.selectedIndex = targetIndex;
         if (index==modelList.count-1 && completion!=nil) {completion(targetNav);}
         [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:targetNav animated:NO completion:completion];
     };
@@ -181,6 +233,21 @@
         }];
     } else {
         dismissCompletionBlock();
+    }
+}
+
+- (XZTabBarRouterType)private_targetTabBarTypeWithModel:(XZRouterNodeModel *)model {
+    NSString *targetTab = model.rootInfo.targetTab;
+    if ([targetTab isEqualToString:kRouterTabBar_FD]) {
+        return XZTabBarRouterType_FD;
+    } else if ([targetTab isEqualToString:kRouterTabBar_FK]) {
+        return XZTabBarRouterType_FK;
+    } else {
+        XZTabBarRouterType targetType = [self private_tabBarRouterTypeForPathName:model.path];
+        if (targetType==XZTabBarRouterType_none || targetType==XZTabBarRouterType_both) {
+            targetType = [XZTabBarManager shared].currentType==XZTabBarType_FD ? XZTabBarRouterType_FD : XZTabBarRouterType_FK;
+        }
+        return targetType;
     }
 }
 
@@ -202,6 +269,13 @@
         if ([pathClass respondsToSelector:@selector(router_enable)]) {
             if (![pathClass router_enable]) {
                 XZDebugLog(@"路由校验失败：%@ 协议对应的class %@ 未开启路由功能", path, pathClass);
+                return NO;
+            }
+        }
+        
+        if (node.rootInfo != nil && node.rootInfo.targetTab != nil) {
+            if (![shared.rootMDic[node.rootInfo.targetTab] containsObject:node.path]) {
+                XZDebugLog(@"路由校验失败：targetTab %@ 不包含 rootPath %@ ", node.rootInfo.targetTab, node.path);
                 return NO;
             }
         }
@@ -232,4 +306,29 @@
 }
 
 @end
+
+@implementation UITabBarController (XZRouter)
+
+- (void)router_allChildNavigationControllersPopToRoot {
+    __weak typeof (self) weakSelf = self;
+    void (^finalBlock)() = ^ {
+        NSArray *childs = weakSelf.childViewControllers;
+        for (UIViewController *vc in childs) {
+            if ([vc isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *nav = (UINavigationController *)vc;
+                [nav router_popToRootViewController:NO];
+            }
+        }
+    };
+    if (self.presentedViewController) {
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            finalBlock();
+        }];
+    } else {
+        finalBlock();
+    }
+}
+
+@end
+
 
