@@ -6,7 +6,7 @@
              {
              "path": "MessageA",
              "rootInfo": {
-             "isSaveHistory": 1
+             "isSaveHistory": 0
              }
              },
              {
@@ -16,10 +16,7 @@
              "path": "MessageC"
              },
              {
-             "path": "HomeA",
-             "rootInfo": {
-             "isSaveHistory": 1
-             }
+             "path": "HomeA"
              },
              {
              "path": "HomeB"

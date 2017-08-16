@@ -48,7 +48,15 @@
 + (XZRouterModel *)PersonalB_MessageA_B_C_HomeA_B_C {
     return [self fakeModel:@"PersonalB_MessageA_B_C_HomeA_B_C"];
 }
-
++ (XZRouterModel *)PersonalB_MessageA_B_C_HomeA_B_C_Clear {
+    return [self fakeModel:@"PersonalB_MessageA_B_C_HomeA_B_C_Clear"];
+}
++ (XZRouterModel *)Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login {
+    return [self fakeModel:@"Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login"];
+}
++ (XZRouterModel *)PersonalB_MessageA_B_C_HomeA_C {
+    return [self fakeModel:@"PersonalB_MessageA_B_C_HomeA_C"];
+}
 + (XZRouterModel *)fakeModel:(NSString *)filePath {
     NSString *path = [[NSBundle mainBundle] pathForResource:filePath ofType:@".json"];
     NSString *content = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];

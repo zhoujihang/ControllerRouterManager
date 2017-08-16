@@ -101,16 +101,19 @@
     XZRouterManager *shared = [self shared];
     
     // 取消当前页面下presented的页面，如 UIAlertController
-    [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:nil];
-    
-    [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:animated completion:^(UINavigationController *newNav) {}];
+    if (fromVC.presentedViewController) {
+        [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:animated completion:^(UINavigationController *newNav) {}];
+        }];
+    } else {
+        [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:animated completion:^(UINavigationController *newNav) {}];
+    }
     XZDebugLog(@"路由完成");
 }
 
 - (void)private_recursiveShow:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index toNavigation:(UINavigationController *)nav animated:(BOOL)animated completion:(void (^)(UINavigationController *newNav))completion {
     if (modelList.count == 0) {return;}
     if (index >= modelList.count) {return;}
-    
     XZRouterNodeModel *node = modelList[index];
     NSString *path = node.path;
     
@@ -149,36 +152,43 @@
     if (![rootVC isKindOfClass:[UITabBarController class]]) {return;}
     UITabBarController *tabVC = (UITabBarController *)rootVC;
     
-    // fromNav
+    // 1 得到 fromNav
     if (![tabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {return;}
     UINavigationController *fromNav = (UINavigationController *)tabVC.selectedViewController;
     
-    // fromNav clear
-    [fromNav.presentedViewController dismissViewControllerAnimated:animated completion:^{
-        if (node.rootInfo.isClear) {
-            [fromNav router_popToRootViewController:NO];
-        }
-    }];
-    
-    // targetNav
-    NSInteger targetIndex = [XZRouterRegisterTool indexOfRootPath:node.path];
-    if (targetIndex >= tabVC.childViewControllers.count) {return;}
-    if (![tabVC.childViewControllers[targetIndex] isKindOfClass:[UINavigationController class]]) {return;}
-    UINavigationController *targetNav = (UINavigationController *)tabVC.childViewControllers[targetIndex];
-    [targetNav router_popToRootViewController:NO];
-    
-    // targetNav selected
     __weak typeof (self) weakSelf = self;
-    void (^finalBlock)(UINavigationController *) = ^(UINavigationController *newNav) {
-        if (index==modelList.count-1 && completion!=nil) {completion(newNav);}
-        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:newNav animated:NO completion:completion];
+    void (^dismissCompletionBlock)() = ^() {
+        if (node.rootInfo.isSaveHistory == NO) {
+            [fromNav router_popToRootViewController:animated];
+        }
+        // 3 得到 targetNav
+        NSInteger targetIndex = [XZRouterRegisterTool indexOfRootPath:node.path];
+        if (targetIndex >= tabVC.childViewControllers.count) {return;}
+        if (![tabVC.childViewControllers[targetIndex] isKindOfClass:[UINavigationController class]]) {return;}
+        UINavigationController *targetNav = (UINavigationController *)tabVC.childViewControllers[targetIndex];
+        [targetNav router_popToRootViewController:NO];
+        
+        // 4 清理 targetNav 的层级，选中tabVC相应的节点
+        tabVC.selectedIndex = targetIndex;
+        if (index==modelList.count-1 && completion!=nil) {completion(targetNav);}
+        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:targetNav animated:NO completion:completion];
     };
-    tabVC.selectedIndex = targetIndex;
-    finalBlock(targetNav);
+    
+    // 2 清理 fromNav的层级
+    if (fromNav.presentedViewController) {
+        [fromNav.presentedViewController dismissViewControllerAnimated:animated completion:^{
+            dismissCompletionBlock();
+        }];
+    } else {
+        dismissCompletionBlock();
+    }
 }
 
 + (BOOL)private_validateModel:(XZRouterModel *)model {
-    if (model.list.count == 0) {return NO;}
+    if (model.list.count == 0) {
+        XZDebugLog(@"路由校验失败：节点个数为0 %@", model.list);
+        return NO;
+    }
     XZRouterManager *shared = [self shared];
     for (XZRouterNodeModel *node in model.list) {
         NSString *path = node.path;

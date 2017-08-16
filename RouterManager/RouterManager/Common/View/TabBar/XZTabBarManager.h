@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FDTabBarController.h"
+#import "FKTabBarController.h"
 
 @interface XZTabBarManager : NSObject
 
-+ (instancetype)shared;
+@property (nonatomic, strong, readonly, nullable) FDTabBarController *tabBarVC_FD;
+@property (nonatomic, strong, readonly, nullable) FKTabBarController *tabBarVC_FK;
+
++ (instancetype _Nonnull )shared;
 
 - (void)switchToFD;
 - (void)switchToFK;

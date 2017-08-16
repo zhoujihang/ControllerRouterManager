@@ -49,6 +49,9 @@
 		47B88B351F42F28C00D900E5 /* MessageA_B_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B341F42F28C00D900E5 /* MessageA_B_C.json */; };
 		47B88B381F43017A00D900E5 /* XZTabBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B371F43017A00D900E5 /* XZTabBarManager.m */; };
 		47B88B3A1F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B391F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json */; };
+		47B88B3C1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B3B1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json */; };
+		47B88B3E1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */; };
+		47B88B401F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */; };
 		D4543EF44B5109BDCA99D22B /* Pods_RouterManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEF68DD58CBD311EB1C0C87 /* Pods_RouterManager.framework */; };
 		F54AC1F4841ECAE702074922 /* Pods_RouterManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3A6D22A4185EB3DFA44E7B /* Pods_RouterManagerTests.framework */; };
 /* End PBXBuildFile section */
@@ -147,6 +150,9 @@
 		47B88B361F43017A00D900E5 /* XZTabBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZTabBarManager.h; sourceTree = "<group>"; };
 		47B88B371F43017A00D900E5 /* XZTabBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZTabBarManager.m; sourceTree = "<group>"; };
 		47B88B391F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageA_B_C_HomeA_B_C.json; sourceTree = "<group>"; };
+		47B88B3B1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageA_B_C_HomeA_B_C_Clear.json; sourceTree = "<group>"; };
+		47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json; sourceTree = "<group>"; };
+		47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageA_B_C_HomeA_C.json; sourceTree = "<group>"; };
 		8A3EF0F6F73E92C15B89E714 /* Pods-RouterManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouterManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RouterManagerTests/Pods-RouterManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D3A6D22A4185EB3DFA44E7B /* Pods_RouterManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouterManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEF68DD58CBD311EB1C0C87 /* Pods_RouterManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouterManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,6 +438,9 @@
 				47B88B301F42E73300D900E5 /* LoginX5.json */,
 				47B88B321F42E76700D900E5 /* Login_PersonalA_OrderC.json */,
 				47B88B391F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json */,
+				47B88B3B1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json */,
+				47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */,
+				47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -579,6 +588,9 @@
 			files = (
 				47B88B2D1F42E70500D900E5 /* OrderB_Login_Login_OrderC_Login.json in Resources */,
 				47B88B251F42E37300D900E5 /* HomeA_B_C.json in Resources */,
+				47B88B3C1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json in Resources */,
+				47B88B401F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json in Resources */,
+				47B88B3E1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json in Resources */,
 				47B88B2B1F42E6CC00D900E5 /* OrderC_PersonalA_B_C.json in Resources */,
 				47B88B3A1F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json in Resources */,
 				47B88B2F1F42E71100D900E5 /* Login.json in Resources */,

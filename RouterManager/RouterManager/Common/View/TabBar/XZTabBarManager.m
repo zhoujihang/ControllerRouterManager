@@ -7,13 +7,11 @@
 //
 
 #import "XZTabBarManager.h"
-#import "FDTabBarController.h"
-#import "FKTabBarController.h"
 
 @interface XZTabBarManager ()
 
-@property (nonatomic, strong, nullable) FDTabBarController *tabBarVC_FD;
-@property (nonatomic, strong, nullable) FKTabBarController *tabBarVC_FK;
+@property (nonatomic, strong, readwrite, nullable) FDTabBarController *tabBarVC_FD;
+@property (nonatomic, strong, readwrite, nullable) FKTabBarController *tabBarVC_FK;
 
 @end
 

@@ -25,6 +25,9 @@
 + (XZRouterModel * _Nonnull)LoginX5;
 + (XZRouterModel * _Nonnull)Login_PersonalA_OrderC;
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_B_C;
++ (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_B_C_Clear;
++ (XZRouterModel * _Nonnull)Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login;
++ (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_C;
 @end
 
 @interface XZRouterNodeModel : NSObject
@@ -37,7 +40,7 @@
 
 @interface XZRouterRootNodeInfoModel : NSObject     // 跳转根节点的额外逻辑
 
-@property (nonatomic, assign) BOOL isClear;         // 切换到新的根节点前，是否将当前根节点拥有的历史页面清除
+@property (nonatomic, assign) BOOL isSaveHistory;         // 切换到新的根节点前，是否保留当前根节点拥有的历史页面，默认NO
 @property (nonatomic, copy, nullable) NSString *targetTab;  // 新的根节点所属的 tabBar 名称
 
 @end

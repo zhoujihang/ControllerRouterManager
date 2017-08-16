@@ -1,16 +1,19 @@
 {
     "list": [
              {
+             "path": "Login"
+             },
+             {
              "path": "PersonalB"
+             },
+             {
+             "path": "Login"
              },
              {
              "path": "MessageA",
              "rootInfo": {
-             "isSaveHistory": 1
+             "isSaveHistory": 0
              }
-             },
-             {
-             "path": "MessageB"
              },
              {
              "path": "MessageC"
@@ -22,13 +25,16 @@
              }
              },
              {
-             "path": "HomeB"
+             "path": "Login"
              },
              {
              "path": "HomeC",
              "param": {
              "url": "http://www.hao123.com"
              }
+             },
+             {
+             "path": "Login"
              }
              ]
 }
