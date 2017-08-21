@@ -48,6 +48,12 @@
         text = @"OrderB_Login_Login_OrderC_Login";
     } else if (indexPath.row == 6) {
         text = @"HouseA_B_C";
+    } else if (indexPath.row == 7) {
+        text = @"登陆";
+    } else if (indexPath.row == 8) {
+        text = @"退出登陆";
+    } else if (indexPath.row == 9) {
+        text = @"MessageA_B_C  需要登陆";
     }
     
     return text;
@@ -68,6 +74,14 @@
         [XZRouterManager routerWithModel:[XZRouterModel OrderB_Login_Login_OrderC_Login] fromVC:self];
     } else if (indexPath.row == 6) {
         [XZRouterManager routerWithModel:[XZRouterModel HouseA_B_C] fromVC:self];
+    } else if (indexPath.row == 7) {
+        isUserLogin = YES;
+        XZDebugLog(@"用户成功登陆");
+    } else if (indexPath.row == 8) {
+        isUserLogin = NO;
+        XZDebugLog(@"用户退出登陆");
+    } else if (indexPath.row == 9) {
+        [XZRouterManager routerWithModel:[XZRouterModel MessageA_B_C] fromVC:self];
     }
     
 }

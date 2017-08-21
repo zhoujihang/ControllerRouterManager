@@ -19,7 +19,9 @@
 + (BOOL)router_enable {
     return YES;
 }
-
++ (BOOL)router_needLogin {
+    return YES;
+}
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.alertView dismissWithClickedButtonIndex:0 animated:NO];

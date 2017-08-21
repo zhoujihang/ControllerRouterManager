@@ -11,6 +11,8 @@
 #import "BaseNavigationController.h"
 #import "XZTabBarManager.h"
 
+BOOL isUserLogin = YES;
+
 @interface UINavigationController (XZRouter)
 
 - (void)router_popToRootViewController:(BOOL)animated;
@@ -271,6 +273,13 @@
         if ([pathClass respondsToSelector:@selector(router_enable)]) {
             if (![pathClass router_enable]) {
                 XZDebugLog(@"路由校验失败：%@ 协议对应的class %@ 未开启路由功能", path, pathClass);
+                return NO;
+            }
+        }
+        
+        if ([pathClass respondsToSelector:@selector(router_needLogin)]) {
+            if ([pathClass router_needLogin] && !isUserLogin) {
+                XZDebugLog(@"路由校验失败：%@ 协议对应的class %@ 需要登陆才能访问", path, pathClass);
                 return NO;
             }
         }

@@ -42,6 +42,8 @@
         text = @"HomeB router";
     } else if (indexPath.row == 3) {
         text = @"HomeB";
+    } else if (indexPath.row == 4) {
+        text = @"Login";
     }
     
     return text;
@@ -58,6 +60,8 @@
         [XZRouterManager routerWithModel:[XZRouterModel OrderC] fromVC:self];
     } else if (indexPath.row == 3) {
         [self.navigationController pushViewController:[HomeBViewController new] animated:NO];
+    } else if (indexPath.row == 4) {
+        [XZRouterManager routerWithModel:[XZRouterModel Login] fromVC:self];
     }
     
 }

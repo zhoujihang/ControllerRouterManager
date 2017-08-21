@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "XZRouterModel.h"
 
+FOUNDATION_EXTERN BOOL isUserLogin;
+
 @protocol XZRoutableProtocol <NSObject>
 
 - (instancetype)initWithRouterParameters:(NSDictionary *)param;
 + (BOOL)router_validateRouterParameters:(NSDictionary *)param;
 + (BOOL)router_enable;
++ (BOOL)router_needLogin;
 
 @end
 
