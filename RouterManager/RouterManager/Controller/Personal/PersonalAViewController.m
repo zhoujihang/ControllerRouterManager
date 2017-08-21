@@ -107,12 +107,11 @@
             [XZRouterManager routerWithModel:[XZRouterModel PersonalB_MessageA_B_C_HomeA_C] fromVC:self];
         });
     } else if (indexPath.row == 10) {
-        [XZRouterManager routerWithModel:[XZRouterModel PersonalB_MessageAFD_Login_C_HomeAFD_C] fromVC:self];
+        [XZRouterManager routerWithModel:[XZRouterModel PersonalB_MessageAFK_Login_C_HomeAFK_C] fromVC:self];
     } else if (indexPath.row == 11) {
         XZRouterNodeModel *node = [XZRouterNodeModel model:@"PersonalB" param:nil];
         [XZRouterManager routerWithModel:[XZRouterModel model:@[node]] fromVC:self];
     }
-    
 }
 
 - (void)showAlert1 {

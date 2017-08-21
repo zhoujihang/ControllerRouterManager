@@ -25,7 +25,7 @@
 + (void)routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC;
 + (BOOL)validateModel:(XZRouterModel *)model;
 
-- (void)registerPath:(NSString *)path forClass:(Class)class;
+- (void)registerPath:(NSString *)path forClassName:(NSString *)className;
 - (void)registerRootPaths:(NSArray<NSString *> *)paths forRootName:(NSString *)name;
 - (void)registerPresentPaths:(NSArray<NSString *>*)paths;
 

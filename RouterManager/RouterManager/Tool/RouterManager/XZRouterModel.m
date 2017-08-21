@@ -63,8 +63,8 @@
 + (XZRouterModel *)PersonalB_MessageA_B_C_HomeA_C {
     return [self fakeModel:@"PersonalB_MessageA_B_C_HomeA_C"];
 }
-+ (XZRouterModel *)PersonalB_MessageAFD_Login_C_HomeAFD_C {
-    return [self fakeModel:@"PersonalB_MessageAFD_Login_C_HomeAFD_C"];
++ (XZRouterModel *)PersonalB_MessageAFK_Login_C_HomeAFK_C {
+    return [self fakeModel:@"PersonalB_MessageAFK_Login_C_HomeAFK_C"];
 }
 + (XZRouterModel *)fakeModel:(NSString *)filePath {
     NSString *path = [[NSBundle mainBundle] pathForResource:filePath ofType:@".json"];

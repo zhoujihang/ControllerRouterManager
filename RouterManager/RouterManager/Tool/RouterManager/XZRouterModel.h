@@ -28,7 +28,7 @@
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_B_C_Clear;
 + (XZRouterModel * _Nonnull)Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login;
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_C;
-+ (XZRouterModel * _Nonnull)PersonalB_MessageAFD_Login_C_HomeAFD_C;
++ (XZRouterModel * _Nonnull)PersonalB_MessageAFK_Login_C_HomeAFK_C;
 
 + (instancetype _Nonnull)model:(NSArray *_Nonnull)nodeList;
 @end

@@ -50,27 +50,26 @@ NSString *const kRouter_Login = @"Login";
 + (void)setup {
     XZRouterManager *shared = [XZRouterManager shared];
     
-    [shared registerPath:kRouter_HomeA forClass:[HomeAViewController class]];
-    [shared registerPath:kRouter_HomeB forClass:[HomeBViewController class]];
-    [shared registerPath:kRouter_HomeC forClass:[HomeCViewController class]];
+    [shared registerPath:kRouter_HomeA forClassName:NSStringFromClass([HomeAViewController class])];
+    [shared registerPath:kRouter_HomeB forClassName:NSStringFromClass([HomeBViewController class])];
+    [shared registerPath:kRouter_HomeC forClassName:NSStringFromClass([HomeCViewController class])];
     
-    [shared registerPath:kRouter_HouseA forClass:[HouseAViewController class]];
-    [shared registerPath:kRouter_HouseB forClass:[HouseBViewController class]];
-    [shared registerPath:kRouter_HouseC forClass:[HouseCViewController class]];
+    [shared registerPath:kRouter_HouseA forClassName:NSStringFromClass([HouseAViewController class])];
+    [shared registerPath:kRouter_HouseB forClassName:NSStringFromClass([HouseBViewController class])];
+    [shared registerPath:kRouter_HouseC forClassName:NSStringFromClass([HouseCViewController class])];
     
-    [shared registerPath:kRouter_OrderA forClass:[OrderAViewController class]];
-    [shared registerPath:kRouter_OrderB forClass:[OrderBViewController class]];
-    [shared registerPath:kRouter_OrderC forClass:[OrderCViewController class]];
+    [shared registerPath:kRouter_OrderA forClassName:NSStringFromClass([OrderAViewController class])];
+    [shared registerPath:kRouter_OrderB forClassName:NSStringFromClass([OrderBViewController class])];
+    [shared registerPath:kRouter_OrderC forClassName:NSStringFromClass([OrderCViewController class])];
     
-    [shared registerPath:kRouter_MessageA forClass:[MessageAViewController class]];
-    [shared registerPath:kRouter_MessageB forClass:[MessageBViewController class]];
-    [shared registerPath:kRouter_MessageC forClass:[MessageCViewController class]];
+    [shared registerPath:kRouter_MessageA forClassName:NSStringFromClass([MessageAViewController class])];
+    [shared registerPath:kRouter_MessageB forClassName:NSStringFromClass([MessageBViewController class])];
+    [shared registerPath:kRouter_MessageC forClassName:NSStringFromClass([MessageCViewController class])];
     
-    [shared registerPath:kRouter_PersonalA forClass:[PersonalAViewController class]];
-    [shared registerPath:kRouter_PersonalB forClass:[PersonalBViewController class]];
-    [shared registerPath:kRouter_PersonalC forClass:[PersonalCViewController class]];
-    [shared registerPath:kRouter_Login forClass:[LoginViewController class]];
-    
+    [shared registerPath:kRouter_PersonalA forClassName:NSStringFromClass([PersonalAViewController class])];
+    [shared registerPath:kRouter_PersonalB forClassName:NSStringFromClass([PersonalBViewController class])];
+    [shared registerPath:kRouter_PersonalC forClassName:NSStringFromClass([PersonalCViewController class])];
+    [shared registerPath:kRouter_Login forClassName:NSStringFromClass([LoginViewController class])];
     
     [shared registerRootPaths:@[kRouter_HomeA, kRouter_HouseA, kRouter_OrderA, kRouter_MessageA, kRouter_PersonalA] forRootName:kRouterTabBar_FD];
     [shared registerRootPaths:@[kRouter_HomeA, kRouter_OrderA, kRouter_MessageA, kRouter_PersonalA] forRootName:kRouterTabBar_FK];

@@ -39,6 +39,8 @@
     } else if (indexPath.row == 1) {
         text = @"Home_A_B_C[缺url]";
     } else if (indexPath.row == 2) {
+        text = @"HomeB router";
+    } else if (indexPath.row == 3) {
         text = @"HomeB";
     }
     
@@ -53,6 +55,8 @@
         [model.list.lastObject setParam:nil];
         [XZRouterManager routerWithModel:model fromVC:self];
     } else if (indexPath.row == 2) {
+        [XZRouterManager routerWithModel:[XZRouterModel OrderC] fromVC:self];
+    } else if (indexPath.row == 3) {
         [self.navigationController pushViewController:[HomeBViewController new] animated:NO];
     }
     

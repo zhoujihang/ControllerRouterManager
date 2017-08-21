@@ -52,7 +52,7 @@
 		47B88B3C1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B3B1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json */; };
 		47B88B3E1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */; };
 		47B88B401F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */; };
-		47B88B421F44437000D900E5 /* PersonalB_MessageAFD_Login_C_HomeAFD_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B411F44437000D900E5 /* PersonalB_MessageAFD_Login_C_HomeAFD_C.json */; };
+		47B88B421F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B88B411F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json */; };
 		D4543EF44B5109BDCA99D22B /* Pods_RouterManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEF68DD58CBD311EB1C0C87 /* Pods_RouterManager.framework */; };
 		F54AC1F4841ECAE702074922 /* Pods_RouterManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3A6D22A4185EB3DFA44E7B /* Pods_RouterManagerTests.framework */; };
 /* End PBXBuildFile section */
@@ -154,7 +154,7 @@
 		47B88B3B1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageA_B_C_HomeA_B_C_Clear.json; sourceTree = "<group>"; };
 		47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json; sourceTree = "<group>"; };
 		47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageA_B_C_HomeA_C.json; sourceTree = "<group>"; };
-		47B88B411F44437000D900E5 /* PersonalB_MessageAFD_Login_C_HomeAFD_C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageAFD_Login_C_HomeAFD_C.json; sourceTree = "<group>"; };
+		47B88B411F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonalB_MessageAFK_Login_C_HomeAFK_C.json; sourceTree = "<group>"; };
 		8A3EF0F6F73E92C15B89E714 /* Pods-RouterManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouterManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RouterManagerTests/Pods-RouterManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D3A6D22A4185EB3DFA44E7B /* Pods_RouterManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouterManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEF68DD58CBD311EB1C0C87 /* Pods_RouterManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouterManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -443,7 +443,7 @@
 				47B88B3B1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json */,
 				47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */,
 				47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */,
-				47B88B411F44437000D900E5 /* PersonalB_MessageAFD_Login_C_HomeAFD_C.json */,
+				47B88B411F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -604,7 +604,7 @@
 				47B88B351F42F28C00D900E5 /* MessageA_B_C.json in Resources */,
 				4722D7361F41BEF2001038AA /* Assets.xcassets in Resources */,
 				47B88B271F42E68100D900E5 /* HouseA_B_C.json in Resources */,
-				47B88B421F44437000D900E5 /* PersonalB_MessageAFD_Login_C_HomeAFD_C.json in Resources */,
+				47B88B421F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,7 +33,7 @@
 
 @interface XZRouterManager()
 
-@property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, Class> *pathMDic;
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, NSString *> *pathMDic;
 @property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, NSArray<NSString *>*> *rootMDic;
 @property (nonatomic, strong, nullable) NSMutableArray<NSString *> *presentMArr;
 
@@ -62,11 +62,12 @@
     return self;
 }
 
-- (void)registerPath:(NSString *)path forClass:(Class)class {
+- (void)registerPath:(NSString *)path forClassName:(NSString *)className {
     if (!([path isKindOfClass:[NSString class]] && path.length > 0)) {
         NSAssert(false, @"路由注册失败， path %@ 必须为非空字符串", path);
         return;
     }
+    Class class = NSClassFromString(className);
     if (![class conformsToProtocol:@protocol(XZRoutableProtocol)]) {
         NSAssert(false, @"路由注册失败， class %@ 必须实现 XZRoutableProtocol 协议", class);
         return;
@@ -75,7 +76,7 @@
         NSAssert(false, @"路由注册失败， %@ 已被注册为 %@，不可覆盖注册", path, self.pathMDic[path]);
         return;
     }
-    self.pathMDic[path] = class;
+    self.pathMDic[path] = className;
 }
 - (void)registerRootPaths:(NSArray<NSString *> *)paths forRootName:(NSString *)name {
     if (!([name isKindOfClass:[NSString class]] && name.length > 0)) {
@@ -165,7 +166,8 @@
         // 返回选中根节点
         [self private_selectTabBarRoot:modelList index:index fromNavigation:nav animated:animated completion:completion];
     } else {
-        Class class = self.pathMDic[path];
+        NSString *className = self.pathMDic[path];
+        Class class = NSClassFromString(className);
         UIViewController *newVC = [[class alloc] initWithRouterParameters:node.param];
         if ([self.presentMArr containsObject:path]) {
             // present
@@ -259,7 +261,7 @@
     XZRouterManager *shared = [self shared];
     for (XZRouterNodeModel *node in model.list) {
         NSString *path = node.path;
-        Class pathClass = shared.pathMDic[path];
+        Class pathClass = NSClassFromString(shared.pathMDic[path]);
         
         if (!(pathClass!=nil && [pathClass isSubclassOfClass:[UIViewController class]] && [pathClass conformsToProtocol:@protocol(XZRoutableProtocol)])) {
             XZDebugLog(@"路由校验失败：%@ 协议对应的class %@ 不合法", path, pathClass);
