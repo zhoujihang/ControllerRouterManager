@@ -9,6 +9,10 @@
 #import "XZRouterModel.h"
 #import <MJExtension/MJExtension.h>
 
+NSString *const kRouterTargetTab_FK = @"FK";
+NSString *const kRouterTargetTab_FD = @"FD";
+NSString *const kRouterTargetTab_NOW = @"NOW";
+
 @implementation XZRouterModel
 
 + (NSDictionary *)objectClassInArray {

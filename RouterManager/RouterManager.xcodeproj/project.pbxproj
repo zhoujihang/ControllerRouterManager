@@ -34,6 +34,7 @@
 		4722D7A11F41C279001038AA /* PersonalBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A01F41C279001038AA /* PersonalBViewController.m */; };
 		4722D7A41F41C281001038AA /* PersonalCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A31F41C281001038AA /* PersonalCViewController.m */; };
 		4722D7A71F41C7B0001038AA /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A61F41C7B0001038AA /* UIColor+Extension.m */; };
+		477DA8191F4BE22500CD8BC6 /* AnimationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 477DA8181F4BE22500CD8BC6 /* AnimationTool.m */; };
 		47B88B171F41CCD600D900E5 /* XZRouterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B161F41CCD600D900E5 /* XZRouterModel.m */; };
 		47B88B1A1F41CCE400D900E5 /* XZRouterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B191F41CCE400D900E5 /* XZRouterManager.m */; };
 		47B88B1D1F41CCF300D900E5 /* XZRouterRegisterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B1C1F41CCF300D900E5 /* XZRouterRegisterTool.m */; };
@@ -130,6 +131,8 @@
 		4722D7A51F41C7B0001038AA /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		4722D7A61F41C7B0001038AA /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		4722D7A81F41C828001038AA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		477DA8171F4BE22500CD8BC6 /* AnimationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationTool.h; sourceTree = "<group>"; };
+		477DA8181F4BE22500CD8BC6 /* AnimationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationTool.m; sourceTree = "<group>"; };
 		47B88B151F41CCD600D900E5 /* XZRouterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterModel.h; sourceTree = "<group>"; };
 		47B88B161F41CCD600D900E5 /* XZRouterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZRouterModel.m; sourceTree = "<group>"; };
 		47B88B181F41CCE400D900E5 /* XZRouterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterManager.h; sourceTree = "<group>"; };
@@ -303,6 +306,7 @@
 		4722D7601F41BF66001038AA /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				477DA8161F4BE21300CD8BC6 /* AnimationTool */,
 				47B88B141F41CCB100D900E5 /* RouterManager */,
 			);
 			path = Tool;
@@ -405,15 +409,24 @@
 			path = Personal;
 			sourceTree = "<group>";
 		};
+		477DA8161F4BE21300CD8BC6 /* AnimationTool */ = {
+			isa = PBXGroup;
+			children = (
+				477DA8171F4BE22500CD8BC6 /* AnimationTool.h */,
+				477DA8181F4BE22500CD8BC6 /* AnimationTool.m */,
+			);
+			path = AnimationTool;
+			sourceTree = "<group>";
+		};
 		47B88B141F41CCB100D900E5 /* RouterManager */ = {
 			isa = PBXGroup;
 			children = (
 				47B88B151F41CCD600D900E5 /* XZRouterModel.h */,
 				47B88B161F41CCD600D900E5 /* XZRouterModel.m */,
-				47B88B181F41CCE400D900E5 /* XZRouterManager.h */,
-				47B88B191F41CCE400D900E5 /* XZRouterManager.m */,
 				47B88B1B1F41CCF300D900E5 /* XZRouterRegisterTool.h */,
 				47B88B1C1F41CCF300D900E5 /* XZRouterRegisterTool.m */,
+				47B88B181F41CCE400D900E5 /* XZRouterManager.h */,
+				47B88B191F41CCE400D900E5 /* XZRouterManager.m */,
 			);
 			path = RouterManager;
 			sourceTree = "<group>";
@@ -791,6 +804,7 @@
 				47B88B1A1F41CCE400D900E5 /* XZRouterManager.m in Sources */,
 				4722D7951F41C24F001038AA /* OrderAViewController.m in Sources */,
 				4722D72B1F41BEF2001038AA /* main.m in Sources */,
+				477DA8191F4BE22500CD8BC6 /* AnimationTool.m in Sources */,
 				4722D7A41F41C281001038AA /* PersonalCViewController.m in Sources */,
 				4722D76F1F41C00E001038AA /* FDTabBarController.m in Sources */,
 				4722D79E1F41C270001038AA /* PersonalAViewController.m in Sources */,

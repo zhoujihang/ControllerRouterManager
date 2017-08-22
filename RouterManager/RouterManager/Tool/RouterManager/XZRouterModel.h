@@ -11,6 +11,10 @@
 @class XZRouterNodeModel;
 @class XZRouterRootNodeInfoModel;
 
+FOUNDATION_EXTERN NSString *const kRouterTargetTab_FK;
+FOUNDATION_EXTERN NSString *const kRouterTargetTab_FD;
+FOUNDATION_EXTERN NSString *const kRouterTargetTab_NOW;
+
 @interface XZRouterModel : NSObject
 
 @property (nonatomic, copy, nullable) NSArray<XZRouterNodeModel *> *list;

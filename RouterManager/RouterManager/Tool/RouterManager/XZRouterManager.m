@@ -25,7 +25,7 @@ BOOL isUserLogin = YES;
 
 @end
 
-@interface XZRouterManager (XZRouter)
+@interface XZRouterManager (XZRouter) <CAAnimationDelegate>
 
 + (void)private_routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC;
 
@@ -116,28 +116,6 @@ BOOL isUserLogin = YES;
 
 @implementation XZRouterManager (XZRouter)
 
-+ (void)private_routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC {
-    if (![self private_validateModel:model]) {return;}
-    if (fromVC.navigationController == nil) {
-        XZDebugLog(@"fromVC %@ 必须存在navigationController才可使用路由", fromVC);
-        return;
-    }
-    
-    BOOL animated = model.list.count == 1;
-    UINavigationController *fromNav = fromVC.navigationController;
-    XZRouterManager *shared = [self shared];
-    
-    // 取消当前页面下presented的页面，如 UIAlertController
-    if (fromVC.presentedViewController) {
-        [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
-            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:animated completion:^(UINavigationController *newNav) {}];
-        }];
-    } else {
-        [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:animated completion:^(UINavigationController *newNav) {}];
-    }
-    XZDebugLog(@"路由完成");
-}
-
 - (XZTabBarRouterType)private_tabBarRouterTypeForPathName:(NSString *)pathName {
     __block XZTabBarRouterType type = XZTabBarRouterType_none;
     [self.rootMDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * _Nonnull stop) {
@@ -151,6 +129,31 @@ BOOL isUserLogin = YES;
     }];
     return type;
 }
+
++ (void)private_routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC {
+    if (![self private_validateModel:model]) {return;}
+    if (fromVC.navigationController == nil) {
+        XZDebugLog(@"fromVC %@ 必须存在navigationController才可使用路由", fromVC);
+        return;
+    }
+    
+    XZRouterManager *shared = [self shared];
+    BOOL isPresentTransition = [shared.presentMArr containsObject:model.list.lastObject.path];
+    
+    isPresentTransition ? [self private_startPresentTransition] : [self private_startPushTransition];
+    
+    UINavigationController *fromNav = fromVC.navigationController;
+    // 取消当前页面下presented的页面，如 UIAlertController
+    if (fromVC.presentedViewController) {
+        [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:NO completion:^(UINavigationController *newNav) {}];
+        }];
+    } else {
+        [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:NO completion:^(UINavigationController *newNav) {}];
+    }
+    XZDebugLog(@"路由完成");
+}
+
 
 - (void)private_recursiveShow:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index toNavigation:(UINavigationController *)nav animated:(BOOL)animated completion:(void (^)(UINavigationController *newNav))completion {
     if (modelList.count == 0) {return;}
@@ -285,7 +288,26 @@ BOOL isUserLogin = YES;
         }
         
         if (node.rootInfo != nil && node.rootInfo.targetTab != nil) {
-            if (![shared.rootMDic[node.rootInfo.targetTab] containsObject:node.path]) {
+            if ([node.rootInfo.targetTab isEqualToString:kRouterTargetTab_NOW]) {
+                if ([[XZTabBarManager shared] currentType] == XZTabBarType_FK && ![shared.rootMDic[kRouterTabBar_FK] containsObject:node.path]) {
+                    XZDebugLog(@"路由校验失败：targetTab %@ (FK)不包含 rootPath %@ ", node.rootInfo.targetTab, node.path);
+                    return NO;
+                }
+                if ([[XZTabBarManager shared] currentType] == XZTabBarType_FD && ![shared.rootMDic[kRouterTabBar_FD] containsObject:node.path]) {
+                    XZDebugLog(@"路由校验失败：targetTab %@ (FD)不包含 rootPath %@ ", node.rootInfo.targetTab, node.path);
+                    return NO;
+                }
+            } else if ([node.rootInfo.targetTab isEqualToString:kRouterTargetTab_FK]) {
+                if (![shared.rootMDic[kRouterTabBar_FK] containsObject:node.path]) {
+                    XZDebugLog(@"路由校验失败：targetTab %@ (FK)不包含 rootPath %@ ", node.rootInfo.targetTab, node.path);
+                    return NO;
+                }
+            } else if ([node.rootInfo.targetTab isEqualToString:kRouterTargetTab_FD]) {
+                if (![shared.rootMDic[kRouterTabBar_FD] containsObject:node.path]) {
+                    XZDebugLog(@"路由校验失败：targetTab %@ (FD)不包含 rootPath %@ ", node.rootInfo.targetTab, node.path);
+                    return NO;
+                }
+            } else {
                 XZDebugLog(@"路由校验失败：targetTab %@ 不包含 rootPath %@ ", node.rootInfo.targetTab, node.path);
                 return NO;
             }
@@ -300,6 +322,33 @@ BOOL isUserLogin = YES;
     }
     return YES;
 }
+
++ (void)private_startPushTransition {
+    UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.5;
+    
+    animation.type = kCATransitionMoveIn;
+    animation.subtype = kCATransitionFromRight;
+    
+    animation.timingFunction = UIViewAnimationOptionCurveEaseInOut;
+    [win.layer addAnimation:animation forKey:@"animation"];
+    
+}
++ (void)private_startPresentTransition {
+    UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.5;
+    
+    animation.type = kCATransitionMoveIn;
+    animation.subtype = kCATransitionFromTop;
+    
+    animation.timingFunction = UIViewAnimationOptionCurveEaseInOut;
+    [win.layer addAnimation:animation forKey:@"animation"];
+    
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:win cache:NO];
+}
+
 
 @end
 

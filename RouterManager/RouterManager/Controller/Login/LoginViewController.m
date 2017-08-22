@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AnimationTool.h"
 
 @interface LoginViewController ()
 
@@ -18,18 +19,10 @@
     return YES;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 }
-
 
 - (NSString *)overload_cellTextForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *text = [super overload_cellTextForRowAtIndexPath:indexPath];
@@ -54,6 +47,8 @@
         text = @"退出登陆";
     } else if (indexPath.row == 9) {
         text = @"MessageA_B_C  需要登陆";
+    } else if (indexPath.row == 10) {
+        text = @"magic transition";
     }
     
     return text;
@@ -82,6 +77,31 @@
         XZDebugLog(@"用户退出登陆");
     } else if (indexPath.row == 9) {
         [XZRouterManager routerWithModel:[XZRouterModel MessageA_B_C] fromVC:self];
+    } else if (indexPath.row == 10) {
+        UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
+        [[AnimationTool shared] transitionWithType:@"" WithSubtype:@"" ForView:win];
+        
+        UITabBarController *tabbarVC = (UITabBarController *)win.rootViewController;
+        tabbarVC.selectedIndex = 0;
+        UINavigationController *selectedNav = tabbarVC.selectedViewController;
+        
+        UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+        [selectedNav presentViewController:nav1 animated:NO completion:^{
+            [nav1 pushViewController:[LoginViewController new] animated:NO];
+            UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+            [nav1 presentViewController:nav2 animated:NO completion:^{
+                [nav2 pushViewController:[LoginViewController new] animated:NO];
+                UIViewController *loginVC = [LoginViewController new];
+                [nav2 presentViewController:loginVC animated:NO completion:^{
+                    UIViewController *loginVC2 = [LoginViewController new];
+                    [loginVC presentViewController:loginVC2 animated:NO completion:^{
+                        UIViewController *loginVC3 = [LoginViewController new];
+                        [loginVC2 presentViewController:loginVC3 animated:NO completion:^{
+                        }];
+                    }];
+                }];
+            }];
+        }];
     }
     
 }
