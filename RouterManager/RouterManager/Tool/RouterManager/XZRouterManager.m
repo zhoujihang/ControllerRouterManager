@@ -12,7 +12,7 @@
 #import "XZTabBarManager.h"
 
 BOOL isUserLogin = YES;
-
+static CGFloat const kRouterTransitionTime = 4;
 @interface UINavigationController (XZRouter)
 
 - (void)router_popToRootViewController:(BOOL)animated;
@@ -40,7 +40,7 @@ BOOL isUserLogin = YES;
 @property (nonatomic, strong, nullable) NSMutableArray<NSString *> *presentMArr;
 
 @property (nonatomic, strong, nullable) XZRouterModel *currentModel;
-
+@property (nonatomic, strong, nullable) UIWindow *transitionWindow;     // 用于处理 CATransition 是黑色背景的问题
 
 @end
 
@@ -110,6 +110,17 @@ BOOL isUserLogin = YES;
 
 + (BOOL)validateModel:(XZRouterModel *)model {
     return [self private_validateModel:model];
+}
+
+- (UIWindow *)transitionWindow {
+    if (_transitionWindow==nil) {
+        _transitionWindow = [[UIWindow alloc] init];
+        _transitionWindow.rootViewController = [UIViewController new];
+        _transitionWindow.backgroundColor = [UIColor whiteColor];
+        _transitionWindow.windowLevel = UIWindowLevelNormal-1;
+        _transitionWindow.hidden = NO;
+    }
+    return _transitionWindow;
 }
 
 @end
@@ -324,9 +335,11 @@ BOOL isUserLogin = YES;
 }
 
 + (void)private_startPushTransition {
+    [[XZRouterManager shared] transitionWindow];
+    
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
     CATransition *animation = [CATransition animation];
-    animation.duration = 0.5;
+    animation.duration = kRouterTransitionTime;
     
     animation.type = kCATransitionMoveIn;
     animation.subtype = kCATransitionFromRight;
@@ -336,9 +349,11 @@ BOOL isUserLogin = YES;
     
 }
 + (void)private_startPresentTransition {
+    [[XZRouterManager shared] transitionWindow];
+    
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
     CATransition *animation = [CATransition animation];
-    animation.duration = 0.5;
+    animation.duration = kRouterTransitionTime;
     
     animation.type = kCATransitionMoveIn;
     animation.subtype = kCATransitionFromTop;

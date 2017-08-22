@@ -11,6 +11,7 @@
 #import "AnimationTool.h"
 #import "HomeCViewController.h"
 @interface HouseAViewController ()
+@property (nonatomic, strong, nullable) UIWindow *transitionWindow;
 @property (nonatomic, strong, nullable) UIViewController *loginVC;
 @property (nonatomic, strong, nullable) UIViewController *homeCVC;
 @end
@@ -43,6 +44,8 @@
         text = @"transition tabbar";
     } else if (indexPath.row == 2) {
         text = @"transition push animated";
+    } else if (indexPath.row == 3) {
+        text = @"layer animated";
     }
     
     return text;
@@ -120,6 +123,11 @@
 
 
 - (void)private_startPushTransition {
+    self.transitionWindow = [UIWindow new];
+    self.transitionWindow.backgroundColor = [UIColor whiteColor];
+    self.transitionWindow.windowLevel = UIWindowLevelNormal-1;
+    self.transitionWindow.hidden = NO;
+    
     CATransition *animation = [CATransition animation];
     animation.duration = 0.7;
     
@@ -130,6 +138,11 @@
     [self.view.window.layer addAnimation:animation forKey:@"animation"];
 }
 - (void)private_startPresentTransition {
+    self.transitionWindow = [UIWindow new];
+    self.transitionWindow.backgroundColor = [UIColor whiteColor];
+    self.transitionWindow.windowLevel = UIWindowLevelNormal-1;
+    self.transitionWindow.hidden = NO;
+    
     CATransition *animation = [CATransition animation];
     animation.duration = 0.7;
     

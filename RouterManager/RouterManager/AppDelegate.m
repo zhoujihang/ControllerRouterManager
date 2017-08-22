@@ -12,6 +12,7 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong, nullable) UIWindow *bottomWindow;
 
 @end
 
@@ -28,11 +29,9 @@
 - (void)setup {
     [XZRouterRegisterTool setup];
     
-    UIWindow *win = [[UIWindow alloc] init];
-    [win makeKeyAndVisible];
-    [[UIApplication sharedApplication] delegate].window = win;
+    self.window = [[UIWindow alloc] init];
+    [self.window makeKeyAndVisible];
     [[XZTabBarManager shared] switchToFD];
 }
-
 
 @end
