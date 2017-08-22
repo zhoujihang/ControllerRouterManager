@@ -35,6 +35,8 @@
 		4722D7A41F41C281001038AA /* PersonalCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A31F41C281001038AA /* PersonalCViewController.m */; };
 		4722D7A71F41C7B0001038AA /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A61F41C7B0001038AA /* UIColor+Extension.m */; };
 		477DA8191F4BE22500CD8BC6 /* AnimationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 477DA8181F4BE22500CD8BC6 /* AnimationTool.m */; };
+		477DA81B1F4C3F5800CD8BC6 /* HomeA.json in Resources */ = {isa = PBXBuildFile; fileRef = 477DA81A1F4C3F5800CD8BC6 /* HomeA.json */; };
+		477DA81D1F4C467000CD8BC6 /* HouseA.json in Resources */ = {isa = PBXBuildFile; fileRef = 477DA81C1F4C467000CD8BC6 /* HouseA.json */; };
 		47B88B171F41CCD600D900E5 /* XZRouterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B161F41CCD600D900E5 /* XZRouterModel.m */; };
 		47B88B1A1F41CCE400D900E5 /* XZRouterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B191F41CCE400D900E5 /* XZRouterManager.m */; };
 		47B88B1D1F41CCF300D900E5 /* XZRouterRegisterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B88B1C1F41CCF300D900E5 /* XZRouterRegisterTool.m */; };
@@ -133,6 +135,8 @@
 		4722D7A81F41C828001038AA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		477DA8171F4BE22500CD8BC6 /* AnimationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationTool.h; sourceTree = "<group>"; };
 		477DA8181F4BE22500CD8BC6 /* AnimationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationTool.m; sourceTree = "<group>"; };
+		477DA81A1F4C3F5800CD8BC6 /* HomeA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeA.json; sourceTree = "<group>"; };
+		477DA81C1F4C467000CD8BC6 /* HouseA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HouseA.json; sourceTree = "<group>"; };
 		47B88B151F41CCD600D900E5 /* XZRouterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterModel.h; sourceTree = "<group>"; };
 		47B88B161F41CCD600D900E5 /* XZRouterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZRouterModel.m; sourceTree = "<group>"; };
 		47B88B181F41CCE400D900E5 /* XZRouterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZRouterManager.h; sourceTree = "<group>"; };
@@ -457,6 +461,8 @@
 				47B88B3D1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json */,
 				47B88B3F1F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json */,
 				47B88B411F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json */,
+				477DA81A1F4C3F5800CD8BC6 /* HomeA.json */,
+				477DA81C1F4C467000CD8BC6 /* HouseA.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -605,12 +611,14 @@
 				47B88B2D1F42E70500D900E5 /* OrderB_Login_Login_OrderC_Login.json in Resources */,
 				47B88B251F42E37300D900E5 /* HomeA_B_C.json in Resources */,
 				47B88B3C1F4414DD00D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C_Clear.json in Resources */,
+				477DA81B1F4C3F5800CD8BC6 /* HomeA.json in Resources */,
 				47B88B401F443C6A00D900E5 /* PersonalB_MessageA_B_C_HomeA_C.json in Resources */,
 				47B88B3E1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json in Resources */,
 				47B88B2B1F42E6CC00D900E5 /* OrderC_PersonalA_B_C.json in Resources */,
 				47B88B3A1F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json in Resources */,
 				47B88B2F1F42E71100D900E5 /* Login.json in Resources */,
 				47B88B311F42E73300D900E5 /* LoginX5.json in Resources */,
+				477DA81D1F4C467000CD8BC6 /* HouseA.json in Resources */,
 				47B88B291F42E69E00D900E5 /* OrderC.json in Resources */,
 				47B88B331F42E76700D900E5 /* Login_PersonalA_OrderC.json in Resources */,
 				4722D7391F41BEF2001038AA /* LaunchScreen.storyboard in Resources */,

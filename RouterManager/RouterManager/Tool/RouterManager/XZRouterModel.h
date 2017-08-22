@@ -18,7 +18,8 @@ FOUNDATION_EXTERN NSString *const kRouterTargetTab_NOW;
 @interface XZRouterModel : NSObject
 
 @property (nonatomic, copy, nullable) NSArray<XZRouterNodeModel *> *list;
-
++ (XZRouterModel * _Nonnull)HomeA;
++ (XZRouterModel * _Nonnull)HouseA;
 + (XZRouterModel * _Nonnull)HomeA_B_C;
 + (XZRouterModel * _Nonnull)HouseA_B_C;
 + (XZRouterModel * _Nonnull)MessageA_B_C;

@@ -59,7 +59,7 @@
     } else if (indexPath.row == 2) {
         [XZRouterManager routerWithModel:[XZRouterModel OrderC] fromVC:self];
     } else if (indexPath.row == 3) {
-        [self.navigationController pushViewController:[HomeBViewController new] animated:NO];
+        [self.navigationController pushViewController:[HomeBViewController new] animated:YES];
     } else if (indexPath.row == 4) {
         [XZRouterManager routerWithModel:[XZRouterModel Login] fromVC:self];
     }

@@ -1,0 +1,11 @@
+{
+    "list": [
+             {
+             "path": "HouseA",
+             "rootInfo": {
+             "isSaveHistory": 0,
+             "targetTab": "FD"
+             }
+             }
+             ]
+}

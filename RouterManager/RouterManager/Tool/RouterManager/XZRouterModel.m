@@ -28,6 +28,12 @@ NSString *const kRouterTargetTab_NOW = @"NOW";
 }
 
 #warning "fake model"
++ (XZRouterModel *)HomeA {
+    return [self fakeModel:@"HomeA"];
+}
++ (XZRouterModel *)HouseA {
+    return [self fakeModel:@"HouseA"];
+}
 + (XZRouterModel *)HomeA_B_C {
     return [self fakeModel:@"HomeA_B_C"];
 }

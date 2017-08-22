@@ -13,6 +13,12 @@
 
 BOOL isUserLogin = YES;
 static CGFloat const kRouterTransitionTime = 4;
+
+typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
+    XZRouterTransitionTypePresent,
+    XZRouterTransitionTypePush
+};
+
 @interface UINavigationController (XZRouter)
 
 - (void)router_popToRootViewController:(BOOL)animated;
@@ -141,19 +147,34 @@ static CGFloat const kRouterTransitionTime = 4;
     return type;
 }
 
+- (BOOL)private_isRootPath:(NSString *)path {
+    __block BOOL isRoot = NO;
+    [self.rootMDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj containsObject:path]) {
+            isRoot = YES;
+            *stop = YES;
+        }
+    }];
+    return isRoot;
+}
+
 + (void)private_routerWithModel:(XZRouterModel *)model fromVC:(UIViewController *)fromVC {
     if (![self private_validateModel:model]) {return;}
     if (fromVC.navigationController == nil) {
         XZDebugLog(@"fromVC %@ 必须存在navigationController才可使用路由", fromVC);
         return;
     }
-    
     XZRouterManager *shared = [self shared];
-    BOOL isPresentTransition = [shared.presentMArr containsObject:model.list.lastObject.path];
-    [self private_startTransition:isPresentTransition];
     
-    UINavigationController *fromNav = fromVC.navigationController;
+    // 返回指定根路径时，不使用动画
+    if (!(model.list.count == 1 && [shared private_isRootPath:model.list.firstObject.path])) {
+        BOOL isPresentTransition = [shared.presentMArr containsObject:model.list.lastObject.path];
+        XZRouterTransitionType type = isPresentTransition ? XZRouterTransitionTypePresent : XZRouterTransitionTypePush;
+        [self private_transitionWithType:type];
+    }
+    
     // 取消当前页面下presented的页面，如 UIAlertController
+    UINavigationController *fromNav = fromVC.navigationController;
     if (fromVC.presentedViewController) {
         [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
             [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
@@ -333,7 +354,7 @@ static CGFloat const kRouterTransitionTime = 4;
     return YES;
 }
 
-+ (void)private_startTransition:(BOOL)isPresent {
++ (void)private_transitionWithType:(XZRouterTransitionType)type {
     [[XZRouterManager shared] transitionWindow];
     
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
@@ -341,7 +362,11 @@ static CGFloat const kRouterTransitionTime = 4;
     animation.duration = kRouterTransitionTime;
     
     animation.type = kCATransitionMoveIn;
-    animation.subtype = isPresent ? kCATransitionFromTop : kCATransitionFromRight;
+    if (type == XZRouterTransitionTypePush) {
+        animation.subtype = kCATransitionFromRight;
+    } else if (type == XZRouterTransitionTypePresent) {
+        animation.subtype = kCATransitionFromTop;
+    }
     
     animation.timingFunction = UIViewAnimationOptionCurveEaseInOut;
     [win.layer addAnimation:animation forKey:@"animation"];
