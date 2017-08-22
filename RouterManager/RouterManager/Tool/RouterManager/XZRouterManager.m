@@ -150,23 +150,22 @@ static CGFloat const kRouterTransitionTime = 4;
     
     XZRouterManager *shared = [self shared];
     BOOL isPresentTransition = [shared.presentMArr containsObject:model.list.lastObject.path];
-    
-    isPresentTransition ? [self private_startPresentTransition] : [self private_startPushTransition];
+    [self private_startTransition:isPresentTransition];
     
     UINavigationController *fromNav = fromVC.navigationController;
     // 取消当前页面下presented的页面，如 UIAlertController
     if (fromVC.presentedViewController) {
         [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
-            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:NO completion:^(UINavigationController *newNav) {}];
+            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
         }];
     } else {
-        [shared private_recursiveShow:model.list index:0 toNavigation:fromNav animated:NO completion:^(UINavigationController *newNav) {}];
+        [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
     }
     XZDebugLog(@"路由完成");
 }
 
 
-- (void)private_recursiveShow:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index toNavigation:(UINavigationController *)nav animated:(BOOL)animated completion:(void (^)(UINavigationController *newNav))completion {
+- (void)private_recursiveShow:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index toNavigation:(UINavigationController *)nav completion:(void (^)(UINavigationController *newNav))completion {
     if (modelList.count == 0) {return;}
     if (index >= modelList.count) {return;}
     XZRouterNodeModel *node = modelList[index];
@@ -175,12 +174,12 @@ static CGFloat const kRouterTransitionTime = 4;
     __weak typeof (self) weakSelf = self;
     void (^finalBlock)(UINavigationController *) = ^(UINavigationController *newNav) {
         if (index==modelList.count-1 && completion!=nil) {completion(newNav);}
-        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:newNav animated:NO completion:completion];
+        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:newNav completion:completion];
     };
     
     if ([self private_tabBarRouterTypeForPathName:path] != XZTabBarRouterType_none) {
         // 返回选中根节点
-        [self private_selectTabBarRoot:modelList index:index fromNavigation:nav animated:animated completion:completion];
+        [self private_selectTabBarRoot:modelList index:index fromNavigation:nav completion:completion];
     } else {
         NSString *className = self.pathMDic[path];
         Class class = NSClassFromString(className);
@@ -188,18 +187,18 @@ static CGFloat const kRouterTransitionTime = 4;
         if ([self.presentMArr containsObject:path]) {
             // present
             UINavigationController *newNav = [[BaseNavigationController alloc] initWithRootViewController:newVC];
-            [nav presentViewController:newNav animated:animated completion:^{
+            [nav presentViewController:newNav animated:NO completion:^{
                 finalBlock(newNav);
             }];
         } else {
             // push
-            [nav pushViewController:newVC animated:animated];
+            [nav pushViewController:newVC animated:NO];
             finalBlock(nav);
         }
     }
 }
 
-- (void)private_selectTabBarRoot:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index fromNavigation:(UINavigationController *)nav animated:(BOOL)animated completion:(void (^)(UINavigationController *newNav))completion {
+- (void)private_selectTabBarRoot:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index fromNavigation:(UINavigationController *)nav completion:(void (^)(UINavigationController *newNav))completion {
     if (modelList.count == 0) {return;}
     if (index >= modelList.count) {return;}
     XZRouterNodeModel *node = modelList[index];
@@ -215,7 +214,7 @@ static CGFloat const kRouterTransitionTime = 4;
     __weak typeof (self) weakSelf = self;
     void (^dismissCompletionBlock)() = ^() {
         if (node.rootInfo.isSaveHistory == NO ) {
-            [fromNav router_popToRootViewController:animated];
+            [fromNav router_popToRootViewController:NO];
         }
         // 3 得到 targetNav
         XZTabBarRouterType targetType = [self private_targetTabBarTypeWithModel:node];
@@ -241,12 +240,12 @@ static CGFloat const kRouterTransitionTime = 4;
         // 4 清理 targetNav 的层级，选中tabVC相应的节点
         targetTabVC.selectedIndex = targetIndex;
         if (index==modelList.count-1 && completion!=nil) {completion(targetNav);}
-        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:targetNav animated:NO completion:completion];
+        [weakSelf private_recursiveShow:modelList index:index+1 toNavigation:targetNav completion:completion];
     };
     
     // 2 清理 fromNav的层级
     if (fromNav.presentedViewController) {
-        [fromNav.presentedViewController dismissViewControllerAnimated:animated completion:^{
+        [fromNav.presentedViewController dismissViewControllerAnimated:NO completion:^{
             dismissCompletionBlock();
         }];
     } else {
@@ -334,7 +333,7 @@ static CGFloat const kRouterTransitionTime = 4;
     return YES;
 }
 
-+ (void)private_startPushTransition {
++ (void)private_startTransition:(BOOL)isPresent {
     [[XZRouterManager shared] transitionWindow];
     
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
@@ -342,28 +341,11 @@ static CGFloat const kRouterTransitionTime = 4;
     animation.duration = kRouterTransitionTime;
     
     animation.type = kCATransitionMoveIn;
-    animation.subtype = kCATransitionFromRight;
+    animation.subtype = isPresent ? kCATransitionFromTop : kCATransitionFromRight;
     
     animation.timingFunction = UIViewAnimationOptionCurveEaseInOut;
     [win.layer addAnimation:animation forKey:@"animation"];
-    
 }
-+ (void)private_startPresentTransition {
-    [[XZRouterManager shared] transitionWindow];
-    
-    UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
-    CATransition *animation = [CATransition animation];
-    animation.duration = kRouterTransitionTime;
-    
-    animation.type = kCATransitionMoveIn;
-    animation.subtype = kCATransitionFromTop;
-    
-    animation.timingFunction = UIViewAnimationOptionCurveEaseInOut;
-    [win.layer addAnimation:animation forKey:@"animation"];
-    
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:win cache:NO];
-}
-
 
 @end
 
