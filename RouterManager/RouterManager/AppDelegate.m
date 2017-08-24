@@ -29,7 +29,7 @@
 - (void)setup {
     [XZRouterRegisterTool setup];
     
-    self.window = [[UIWindow alloc] init];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     [[XZTabBarManager shared] switchToFD];
 }

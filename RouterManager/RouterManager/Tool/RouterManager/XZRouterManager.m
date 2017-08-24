@@ -12,7 +12,7 @@
 #import "XZTabBarManager.h"
 
 BOOL isUserLogin = YES;
-static CGFloat const kRouterTransitionTime = 4;
+static CGFloat const kRouterTransitionTime = 2;
 
 typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     XZRouterTransitionTypePresent,
@@ -120,7 +120,7 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
 
 - (UIWindow *)transitionWindow {
     if (_transitionWindow==nil) {
-        _transitionWindow = [[UIWindow alloc] init];
+        _transitionWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _transitionWindow.rootViewController = [UIViewController new];
         _transitionWindow.backgroundColor = [UIColor whiteColor];
         _transitionWindow.windowLevel = UIWindowLevelNormal-1;
@@ -166,19 +166,17 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     }
     XZRouterManager *shared = [self shared];
     
-    // 返回指定根路径时，不使用动画
-    if (!(model.list.count == 1 && [shared private_isRootPath:model.list.firstObject.path])) {
-        BOOL isPresentTransition = [shared.presentMArr containsObject:model.list.lastObject.path];
-        XZRouterTransitionType type = isPresentTransition ? XZRouterTransitionTypePresent : XZRouterTransitionTypePush;
-        [self private_transitionWithType:type];
-    }
+    // 根据model数据，选择使用何种转场动画
+    [self private_selectTransitionTypeWithRouterModel:model];
     
     // 取消当前页面下presented的页面，如 UIAlertController
     UINavigationController *fromNav = fromVC.navigationController;
-    if (fromVC.presentedViewController) {
-        [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
-            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
-        }];
+    if (fromVC.presentedViewController && !fromVC.presentedViewController.isBeingDismissed) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
+                [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
+            }];
+        });
     } else {
         [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
     }
@@ -265,12 +263,25 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     };
     
     // 2 清理 fromNav的层级
-    if (fromNav.presentedViewController) {
-        [fromNav.presentedViewController dismissViewControllerAnimated:NO completion:^{
-            dismissCompletionBlock();
-        }];
+    if (fromNav.presentedViewController && !fromNav.presentedViewController.isBeingDismissed) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [fromNav.presentedViewController dismissViewControllerAnimated:NO completion:^{
+                dismissCompletionBlock();
+            }];
+        });
     } else {
         dismissCompletionBlock();
+    }
+}
+
++ (void)private_selectTransitionTypeWithRouterModel:(XZRouterModel *)model {
+    if (model.list.count == 0) {return;}
+    
+    // 返回指定根路径时，不使用动画
+    if (!(model.list.count == 1 && [[self shared] private_isRootPath:model.list.firstObject.path])) {
+        BOOL isPresentTransition = [[[self shared] presentMArr] containsObject:model.list.lastObject.path];
+        XZRouterTransitionType type = isPresentTransition ? XZRouterTransitionTypePresent : XZRouterTransitionTypePush;
+        [self private_transitionWithType:type];
     }
 }
 
@@ -358,6 +369,11 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     [[XZRouterManager shared] transitionWindow];
     
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
+    win.userInteractionEnabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRouterTransitionTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        win.userInteractionEnabled = YES;
+    });
+    
     CATransition *animation = [CATransition animation];
     animation.duration = kRouterTransitionTime;
     
@@ -402,10 +418,12 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
             }
         }
     };
-    if (self.presentedViewController) {
-        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{
-            finalBlock();
-        }];
+    if (self.presentedViewController && !self.presentedViewController.isBeingDismissed) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.presentedViewController dismissViewControllerAnimated:NO completion:^{
+                finalBlock();
+            }];
+        });
     } else {
         finalBlock();
     }

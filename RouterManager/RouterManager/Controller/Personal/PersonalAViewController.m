@@ -66,6 +66,8 @@
         text = @"PersonalB_MessageAFD_Login_C_HomeAFD_C";
     } else if (indexPath.row == 11) {
         text = @"PersonalB";
+    } else if (indexPath.row == 12) {
+        text = @"UIAlertController + Login";
     }
     
     return text;
@@ -111,6 +113,12 @@
     } else if (indexPath.row == 11) {
         XZRouterNodeModel *node = [XZRouterNodeModel model:@"PersonalB" param:nil];
         [XZRouterManager routerWithModel:[XZRouterModel model:@[node]] fromVC:self];
+    } else if (indexPath.row == 12) {
+        [self showAlert2];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+            [XZRouterManager routerWithModel:[XZRouterModel Login] fromVC:self];
+        });
     }
 }
 

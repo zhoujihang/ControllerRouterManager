@@ -34,6 +34,7 @@
 		4722D7A11F41C279001038AA /* PersonalBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A01F41C279001038AA /* PersonalBViewController.m */; };
 		4722D7A41F41C281001038AA /* PersonalCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A31F41C281001038AA /* PersonalCViewController.m */; };
 		4722D7A71F41C7B0001038AA /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4722D7A61F41C7B0001038AA /* UIColor+Extension.m */; };
+		4729CF6F1F4EC237008D25E1 /* Login_PersonalA.json in Resources */ = {isa = PBXBuildFile; fileRef = 4729CF6E1F4EC237008D25E1 /* Login_PersonalA.json */; };
 		477DA8191F4BE22500CD8BC6 /* AnimationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 477DA8181F4BE22500CD8BC6 /* AnimationTool.m */; };
 		477DA81B1F4C3F5800CD8BC6 /* HomeA.json in Resources */ = {isa = PBXBuildFile; fileRef = 477DA81A1F4C3F5800CD8BC6 /* HomeA.json */; };
 		477DA81D1F4C467000CD8BC6 /* HouseA.json in Resources */ = {isa = PBXBuildFile; fileRef = 477DA81C1F4C467000CD8BC6 /* HouseA.json */; };
@@ -133,6 +134,7 @@
 		4722D7A51F41C7B0001038AA /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		4722D7A61F41C7B0001038AA /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		4722D7A81F41C828001038AA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4729CF6E1F4EC237008D25E1 /* Login_PersonalA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Login_PersonalA.json; sourceTree = "<group>"; };
 		477DA8171F4BE22500CD8BC6 /* AnimationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationTool.h; sourceTree = "<group>"; };
 		477DA8181F4BE22500CD8BC6 /* AnimationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationTool.m; sourceTree = "<group>"; };
 		477DA81A1F4C3F5800CD8BC6 /* HomeA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeA.json; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 				47B88B411F44437000D900E5 /* PersonalB_MessageAFK_Login_C_HomeAFK_C.json */,
 				477DA81A1F4C3F5800CD8BC6 /* HomeA.json */,
 				477DA81C1F4C467000CD8BC6 /* HouseA.json */,
+				4729CF6E1F4EC237008D25E1 /* Login_PersonalA.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				47B88B3E1F441B6000D900E5 /* Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login.json in Resources */,
 				47B88B2B1F42E6CC00D900E5 /* OrderC_PersonalA_B_C.json in Resources */,
 				47B88B3A1F4328B500D900E5 /* PersonalB_MessageA_B_C_HomeA_B_C.json in Resources */,
+				4729CF6F1F4EC237008D25E1 /* Login_PersonalA.json in Resources */,
 				47B88B2F1F42E71100D900E5 /* Login.json in Resources */,
 				47B88B311F42E73300D900E5 /* LoginX5.json in Resources */,
 				477DA81D1F4C467000CD8BC6 /* HouseA.json in Resources */,

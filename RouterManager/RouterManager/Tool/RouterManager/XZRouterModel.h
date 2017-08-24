@@ -29,6 +29,7 @@ FOUNDATION_EXTERN NSString *const kRouterTargetTab_NOW;
 + (XZRouterModel * _Nonnull)Login;
 + (XZRouterModel * _Nonnull)LoginX5;
 + (XZRouterModel * _Nonnull)Login_PersonalA_OrderC;
++ (XZRouterModel * _Nonnull)Login_PersonalA;
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_B_C;
 + (XZRouterModel * _Nonnull)PersonalB_MessageA_B_C_HomeA_B_C_Clear;
 + (XZRouterModel * _Nonnull)Login_PersonalB_Login_MessageA_C_HomeA_Login_C_Login;
