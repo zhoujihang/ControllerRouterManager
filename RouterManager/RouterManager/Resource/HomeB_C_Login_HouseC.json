@@ -1,0 +1,19 @@
+{
+    "list": [
+             {
+             "path": "HomeB"
+             },
+             {
+             "path": "HomeC",
+             "param": {
+             "url": "http://www.hao123.com"
+             }
+             },
+             {
+             "path": "Login"
+             },
+             {
+             "path": "HouseC"
+             }
+             ]
+}

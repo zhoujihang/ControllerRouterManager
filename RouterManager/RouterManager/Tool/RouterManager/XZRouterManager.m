@@ -12,7 +12,7 @@
 #import "XZTabBarManager.h"
 
 BOOL isUserLogin = YES;
-static CGFloat const kRouterTransitionTime = 2;
+static CGFloat const kRouterTransitionTime = 0.5;
 
 typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     XZRouterTransitionTypePresent,
@@ -265,7 +265,7 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     // 2 清理 fromNav的层级
     if (fromNav.presentedViewController && !fromNav.presentedViewController.isBeingDismissed) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [fromNav.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            [fromNav dismissViewControllerAnimated:NO completion:^{
                 dismissCompletionBlock();
             }];
         });
@@ -368,14 +368,16 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
 + (void)private_transitionWithType:(XZRouterTransitionType)type {
     [[XZRouterManager shared] transitionWindow];
     
+    CGFloat transitionDuration = kRouterTransitionTime;
+    
     UIWindow *win = [[[UIApplication sharedApplication] delegate] window];
     win.userInteractionEnabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRouterTransitionTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(transitionDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         win.userInteractionEnabled = YES;
     });
     
     CATransition *animation = [CATransition animation];
-    animation.duration = kRouterTransitionTime;
+    animation.duration = transitionDuration;
     
     animation.type = kCATransitionMoveIn;
     if (type == XZRouterTransitionTypePush) {
@@ -420,7 +422,7 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     };
     if (self.presentedViewController && !self.presentedViewController.isBeingDismissed) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            [self dismissViewControllerAnimated:NO completion:^{
                 finalBlock();
             }];
         });

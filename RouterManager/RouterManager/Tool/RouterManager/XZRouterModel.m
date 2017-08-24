@@ -37,6 +37,15 @@ NSString *const kRouterTargetTab_NOW = @"NOW";
 + (XZRouterModel *)HomeA_B_C {
     return [self fakeModel:@"HomeA_B_C"];
 }
++ (XZRouterModel *)HomeB_C_Login {
+    return [self fakeModel:@"HomeB_C_Login"];
+}
++ (XZRouterModel *)HomeB_C_Login_HouseC {
+    return [self fakeModel:@"HomeB_C_Login_HouseC"];
+}
++ (XZRouterModel *)HomeB_C_Login_HouseC_Login {
+    return [self fakeModel:@"HomeB_C_Login_HouseC_Login"];
+}
 + (XZRouterModel *)HouseA_B_C {
     return [self fakeModel:@"HouseA_B_C"];
 }

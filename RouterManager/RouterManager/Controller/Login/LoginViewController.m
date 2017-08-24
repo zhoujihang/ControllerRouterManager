@@ -49,6 +49,8 @@
         text = @"MessageA_B_C  需要登陆";
     } else if (indexPath.row == 10) {
         text = @"magic transition";
+    } else if (indexPath.row == 11) {
+        text = @"HomeA";
     }
     
     return text;
@@ -102,6 +104,8 @@
                 }];
             }];
         }];
+    } else if (indexPath.row == 11) {
+        [XZRouterManager routerWithModel:[XZRouterModel HomeA] fromVC:self];
     }
     
 }

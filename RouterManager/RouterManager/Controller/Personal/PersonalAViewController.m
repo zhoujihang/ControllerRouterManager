@@ -68,6 +68,12 @@
         text = @"PersonalB";
     } else if (indexPath.row == 12) {
         text = @"UIAlertController + Login";
+    } else if (indexPath.row == 13) {
+        text = @"HomeB_C_Login";
+    } else if (indexPath.row == 14) {
+        text = @"HomeB_C_Login_HouseC";
+    } else if (indexPath.row == 15) {
+        text = @"HomeB_C_Login_HouseC_Login";
     }
     
     return text;
@@ -119,6 +125,12 @@
             [self.presentedViewController dismissViewControllerAnimated:NO completion:nil];
             [XZRouterManager routerWithModel:[XZRouterModel Login] fromVC:self];
         });
+    } else if (indexPath.row == 13) {
+        [XZRouterManager routerWithModel:[XZRouterModel HomeB_C_Login] fromVC:self];
+    } else if (indexPath.row == 14) {
+        [XZRouterManager routerWithModel:[XZRouterModel HomeB_C_Login_HouseC] fromVC:self];
+    } else if (indexPath.row == 15) {
+        [XZRouterManager routerWithModel:[XZRouterModel HomeB_C_Login_HouseC_Login] fromVC:self];
     }
 }
 

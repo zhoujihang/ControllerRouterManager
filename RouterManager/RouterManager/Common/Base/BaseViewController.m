@@ -45,6 +45,12 @@
     [self base_setupFrame];
 }
 
+- (void)dealloc {
+    // 解决iOS8中 tableview代理相关崩溃
+    self.base_tableView.delegate = nil;
+    self.base_tableView.dataSource = nil;
+}
+
 - (void)base_setupView {
     self.navigationItem.title = NSStringFromClass([self class]);
     self.view.backgroundColor = [UIColor ext_random];
