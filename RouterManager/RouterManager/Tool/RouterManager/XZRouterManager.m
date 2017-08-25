@@ -19,6 +19,12 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     XZRouterTransitionTypePush
 };
 
+@interface UIViewController (XZRouter)
+
+- (void)router_dismissPresentedViewControllerAnimated:(BOOL)animated completion:(void (^)())completion;
+
+@end
+
 @interface UINavigationController (XZRouter)
 
 - (void)router_popToRootViewController:(BOOL)animated;
@@ -172,17 +178,14 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     // 取消当前页面下presented的页面，如 UIAlertController
     UINavigationController *fromNav = fromVC.navigationController;
     if (fromVC.presentedViewController && !fromVC.presentedViewController.isBeingDismissed) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [fromVC.presentedViewController dismissViewControllerAnimated:NO completion:^{
-                [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
-            }];
-        });
+        [fromVC router_dismissPresentedViewControllerAnimated:NO completion:^{
+            [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
+        }];
     } else {
         [shared private_recursiveShow:model.list index:0 toNavigation:fromNav completion:^(UINavigationController *newNav) {}];
     }
     XZDebugLog(@"路由完成");
 }
-
 
 - (void)private_recursiveShow:(NSArray<XZRouterNodeModel *> *)modelList index:(NSInteger)index toNavigation:(UINavigationController *)nav completion:(void (^)(UINavigationController *newNav))completion {
     if (modelList.count == 0) {return;}
@@ -264,11 +267,9 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
     
     // 2 清理 fromNav的层级
     if (fromNav.presentedViewController && !fromNav.presentedViewController.isBeingDismissed) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [fromNav dismissViewControllerAnimated:NO completion:^{
-                dismissCompletionBlock();
-            }];
-        });
+        [fromNav router_dismissPresentedViewControllerAnimated:NO completion:^{
+            dismissCompletionBlock();
+        }];
     } else {
         dismissCompletionBlock();
     }
@@ -392,6 +393,19 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
 
 @end
 
+@implementation UIViewController (XZRouter)
+
+// [self dismissViewControllerAnimated...] 可能将自己dimiss掉，或将self.presentedvc给dismiss掉，此方法确保只会dismiss自己的self.presentedVC
+// dispatch_after，确保iOS8下present、dismiss同时进行不会崩溃
+- (void)router_dismissPresentedViewControllerAnimated:(BOOL)animated completion:(void (^)())completion {
+    if (self.presentedViewController && !self.presentedViewController.isBeingDismissed) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:animated completion:completion];
+        });
+    }
+}
+
+@end
 
 @implementation UINavigationController (XZRouter)
 
@@ -421,11 +435,9 @@ typedef NS_ENUM(NSUInteger, XZRouterTransitionType) {
         }
     };
     if (self.presentedViewController && !self.presentedViewController.isBeingDismissed) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismissViewControllerAnimated:NO completion:^{
-                finalBlock();
-            }];
-        });
+        [self router_dismissPresentedViewControllerAnimated:NO completion:^{
+            finalBlock();
+        }];
     } else {
         finalBlock();
     }

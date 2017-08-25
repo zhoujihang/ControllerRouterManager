@@ -51,6 +51,8 @@
         text = @"magic transition";
     } else if (indexPath.row == 11) {
         text = @"HomeA";
+    } else if (indexPath.row == 12) {
+        text = @"测试 self.presentedVC dimisss 效果";
     }
     
     return text;
@@ -106,6 +108,22 @@
         }];
     } else if (indexPath.row == 11) {
         [XZRouterManager routerWithModel:[XZRouterModel HomeA] fromVC:self];
+    } else if (indexPath.row == 12) {
+//        LoginViewController *loginVC1 = [LoginViewController new];
+//        loginVC1.view.backgroundColor = [UIColor redColor];
+//        loginVC1.navigationItem.title = @"loginVC1";
+////        LoginViewController *loginVC2 = [LoginViewController new];
+////        loginVC2.view.backgroundColor = [UIColor blueColor];
+////        loginVC2.navigationItem.title = @"loginVC2";
+//        
+//        [self presentViewController:loginVC1 animated:YES completion:^{
+////            [loginVC1 presentViewController:loginVC2 animated:YES completion:nil];
+//        }];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
     }
     
 }

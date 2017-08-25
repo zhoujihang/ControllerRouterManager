@@ -44,6 +44,8 @@
         text = @"HomeB";
     } else if (indexPath.row == 4) {
         text = @"Login";
+    } else if (indexPath.row == 5) {
+        text = @"测试 self.presentedVC dimisss 效果";
     }
     
     return text;
@@ -62,6 +64,21 @@
         [self.navigationController pushViewController:[HomeBViewController new] animated:YES];
     } else if (indexPath.row == 4) {
         [XZRouterManager routerWithModel:[XZRouterModel Login] fromVC:self];
+    } else if (indexPath.row == 5) {
+        LoginViewController *loginVC1 = [LoginViewController new];
+        loginVC1.view.backgroundColor = [UIColor redColor];
+        loginVC1.navigationItem.title = @"loginVC1";
+        LoginViewController *loginVC2 = [LoginViewController new];
+        loginVC2.view.backgroundColor = [UIColor blueColor];
+        loginVC2.navigationItem.title = @"loginVC2";
+
+        [self presentViewController:loginVC1 animated:YES completion:^{
+            [loginVC1 presentViewController:loginVC2 animated:YES completion:nil];
+        }];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+        });
     }
     
 }
